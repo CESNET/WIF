@@ -30,5 +30,6 @@ The package contains Weak Indications Framework library
 
 %files
 %license LICENSE
+%{_libdir}/libwif.so
 
 %changelog
