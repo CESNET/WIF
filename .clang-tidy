@@ -6,7 +6,7 @@ Checks:
   readability-identifier-naming'
 FormatStyle: file
 WarningsAsErrors: '*'
-HeaderFilterRegex: 'include/* src/*'
+HeaderFilterRegex: 'include/*|src/*'
 
 CheckOptions:
   - key:   readability-identifier-naming.NamespaceCase
