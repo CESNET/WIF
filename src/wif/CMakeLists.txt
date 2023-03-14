@@ -1,4 +1,5 @@
 add_library(wif SHARED
+	combinators/averageCombinator.cpp
 	wif.cpp
 )
 
