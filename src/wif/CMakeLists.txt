@@ -1,4 +1,5 @@
 add_library(wif SHARED
+	classifiers/classifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
