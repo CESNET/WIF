@@ -4,7 +4,6 @@ add_library(wif SHARED
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
 	flowFeatures.cpp
-	wif.cpp
 )
 
 target_link_libraries(wif PRIVATE

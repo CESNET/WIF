@@ -1,3 +1,0 @@
-namespace WIF {
-
-} // namespace WIF
