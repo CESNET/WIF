@@ -1,5 +1,6 @@
 add_library(wif SHARED
 	combinators/averageCombinator.cpp
+	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
 	flowFeatures.cpp
 	wif.cpp
