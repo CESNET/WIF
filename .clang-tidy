@@ -6,7 +6,7 @@ Checks:
   readability-identifier-naming'
 FormatStyle: file
 WarningsAsErrors: '*'
-HeaderFilterRegex: 'include/*|src/*'
+HeaderFilterRegex: 'include/wif/*|src/wif/*'
 
 CheckOptions:
   - key:   readability-identifier-naming.NamespaceCase
@@ -31,6 +31,8 @@ CheckOptions:
     value: 's_'
   - key:   readability-identifier-naming.MemberCase
     value: 'camelBack'
+  - key:   readability-identifier-naming.ConstantCase
+    value: 'UPPER_CASE'
   - key:   readability-identifier-naming.PrivateMemberPrefix
     value: 'm_'
   - key:   readability-identifier-naming.ConstantMemberCase
