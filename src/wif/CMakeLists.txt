@@ -1,6 +1,7 @@
 add_library(wif SHARED
 	classifiers/classifier.cpp
 	classifiers/regexClassifier.cpp
+	classifiers/scikitlearnMlClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
