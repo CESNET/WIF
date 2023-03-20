@@ -3,6 +3,7 @@ add_library(wif SHARED
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
+	regex/regexPattern.cpp
 	flowFeatures.cpp
 )
 
