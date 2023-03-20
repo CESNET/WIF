@@ -4,6 +4,7 @@ add_library(wif SHARED
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
+	ml/scikitlearnWrapper.cpp
 	regex/regexPattern.cpp
 	flowFeatures.cpp
 )
