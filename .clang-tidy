@@ -31,6 +31,8 @@ CheckOptions:
     value: 's_'
   - key:   readability-identifier-naming.MemberCase
     value: 'camelBack'
+  - key:   readability-identifier-naming.ConstantCase
+    value: 'UPPER_CASE'
   - key:   readability-identifier-naming.PrivateMemberPrefix
     value: 'm_'
   - key:   readability-identifier-naming.ConstantMemberCase
