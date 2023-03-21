@@ -5,6 +5,8 @@
       - "{{ python }}"
       - "{{ python }}-pip"
       - "{{ python }}-setuptools"
+      - "{{ python }}-devel"
+      - "{{ python }}-numpy"
     state: latest
   vars:
     python: "python{{ version_major }}{{ version_minor }}"
