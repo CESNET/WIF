@@ -2,6 +2,8 @@ add_library(wif SHARED
 	wif.cpp
 )
 
+target_link_libraries(wif PRIVATE Boost::regex)
+
 target_include_directories(wif PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 install(TARGETS wif LIBRARY DESTINATION ${INSTALL_DIR_LIB})
