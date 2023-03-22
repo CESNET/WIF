@@ -12,6 +12,8 @@ set(DSTLIB_INSTALL_TARGETS OFF)
 # Disable RPM package builder
 set(DSTLIB_PACKAGE_BUILDER OFF)
 
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
 if(DEFINED ENV{DSTLIB_CI_TOKEN})
 	set(GIT_REPO https://$ENV{DSTLIB_CI_TOKEN}@gitlab.liberouter.org/feta/wif-group/dst.git)
 else()
