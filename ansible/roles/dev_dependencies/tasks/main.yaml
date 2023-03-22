@@ -1,0 +1,7 @@
+---
+- name: boost library is installed
+  ansible.builtin.dnf:
+    name:
+      - boost
+      - boost-devel
+    state: latest
