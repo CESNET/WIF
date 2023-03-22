@@ -6,6 +6,7 @@ target_link_libraries(wif PRIVATE
 	Boost::regex
 	Python3::Python
 	Python3::NumPy
+	dstlib::dstlib
 )
 
 target_include_directories(wif PUBLIC ${CMAKE_SOURCE_DIR}/include)
