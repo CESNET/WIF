@@ -23,7 +23,7 @@ endif()
 FetchContent_Declare(
 	dstlib
 	GIT_REPOSITORY ${GIT_REPO}
-	GIT_TAG v1.0.1
+	GIT_TAG "v1.0.2"
 	GIT_SHALLOW 1
 )
 
