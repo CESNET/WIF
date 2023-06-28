@@ -1,5 +1,13 @@
 add_library(wif SHARED
-	wif.cpp
+	classifiers/classifier.cpp
+	classifiers/regexClassifier.cpp
+	classifiers/scikitlearnMlClassifier.cpp
+	combinators/averageCombinator.cpp
+	combinators/binaryDSTCombinator.cpp
+	combinators/sumCombinator.cpp
+	ml/scikitlearnWrapper.cpp
+	regex/regexPattern.cpp
+	flowFeatures.cpp
 )
 
 target_link_libraries(wif PRIVATE
