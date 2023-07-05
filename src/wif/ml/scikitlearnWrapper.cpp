@@ -20,6 +20,9 @@ ScikitlearnWrapper::ScikitlearnWrapper(
 
 ScikitlearnWrapper::~ScikitlearnWrapper()
 {
+	m_scikitMlModel.reset();
+	m_classifyFunction.reset();
+
 	PyRun_SimpleString("sys.stdout.flush()");
 	PyRun_SimpleString("sys.stderr.flush()");
 	Py_Finalize();
