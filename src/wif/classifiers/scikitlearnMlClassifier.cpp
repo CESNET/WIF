@@ -44,10 +44,10 @@ ScikitlearnMlClassifier::createFeaturesFromFlow(const FlowFeatures& flowFeatures
 
 	MlFeatures features;
 	features.reserve(featureIDs.size());
-
 	for (size_t featureIdx = 0; featureIdx < featureIDs.size(); ++featureIdx) {
-		features[featureIdx] = flowFeatures.get<double>(featureIDs[featureIdx]);
+		features.emplace_back(flowFeatures.get<double>(featureIDs[featureIdx]));
 	}
+
 	return features;
 }
 
