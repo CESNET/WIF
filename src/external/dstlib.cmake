@@ -17,7 +17,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 if(DEFINED ENV{DSTLIB_CI_TOKEN})
 	set(GIT_REPO https://$ENV{DSTLIB_CI_TOKEN}@gitlab.liberouter.org/feta/wif-group/dst.git)
 else()
-	set(GIT_REPO https://gitlab.liberouter.org/feta/wif-group/dst.git)
+	set(GIT_REPO git@gitlab.liberouter.org:feta/wif-group/dst.git)
 endif()
 
 FetchContent_Declare(
