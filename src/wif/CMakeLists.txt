@@ -10,6 +10,11 @@ set(LIBWIF_SOURCES
 	regex/regexPattern.cpp
 )
 
+if(BUILD_WITH_UNIREC)
+	list(APPEND LIBWIF_SOURCES
+	)
+endif()
+
 set(LIBWIF_LIBS
 	Boost::regex
 	Python3::Python
