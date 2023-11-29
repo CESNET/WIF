@@ -1,13 +1,13 @@
-add_library(wif SHARED
+set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitlearnMlClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
+	flowFeatures.cpp
 	ml/scikitlearnWrapper.cpp
 	regex/regexPattern.cpp
-	flowFeatures.cpp
 )
 
 target_link_libraries(wif PRIVATE
@@ -16,6 +16,8 @@ target_link_libraries(wif PRIVATE
 	Python3::NumPy
 	dstlib::dst
 )
+
+add_library(wif SHARED ${LIBWIF_SOURCES})
 
 target_include_directories(wif PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
