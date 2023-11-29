@@ -10,7 +10,7 @@ set(LIBWIF_SOURCES
 	regex/regexPattern.cpp
 )
 
-target_link_libraries(wif PRIVATE
+set(LIBWIF_LIBS
 	Boost::regex
 	Python3::Python
 	Python3::NumPy
@@ -18,7 +18,7 @@ target_link_libraries(wif PRIVATE
 )
 
 add_library(wif SHARED ${LIBWIF_SOURCES})
-
+target_link_libraries(wif PRIVATE ${LIBWIF_LIBS})
 target_include_directories(wif PUBLIC ${CMAKE_SOURCE_DIR}/include)
 
 install(TARGETS wif LIBRARY DESTINATION ${INSTALL_DIR_LIB})
