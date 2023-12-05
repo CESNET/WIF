@@ -12,6 +12,8 @@ include(cmake/installation.cmake)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
+option(BUILD_WITH_UNIREC "Enable additional libwif features, which depend on libunirec(++)" OFF)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
