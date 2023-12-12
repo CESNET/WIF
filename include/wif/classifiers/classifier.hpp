@@ -35,7 +35,7 @@ public:
 	 *
 	 * @param sourceFeatureIDs
 	 */
-	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
+	virtual void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
 
 	/**
 	 * @brief Perform classification of one flow
