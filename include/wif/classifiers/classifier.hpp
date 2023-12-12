@@ -53,7 +53,6 @@ public:
 	 */
 	virtual std::vector<double> classify(const std::vector<FlowFeatures>& burstOfFlowFeatures) = 0;
 
-protected:
 	/**
 	 * @brief Getter for source feature IDs
 	 *
