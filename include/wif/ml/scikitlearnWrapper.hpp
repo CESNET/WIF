@@ -8,14 +8,14 @@
 
 #pragma once
 
+#include "wif/storage/clfResult.hpp"
+#include <Python.h>
 #include <memory>
+#include <numpy/arrayobject.h>
 #include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
-
-#include <Python.h>
-#include <numpy/arrayobject.h>
 
 namespace WIF {
 
@@ -60,7 +60,7 @@ public:
 	 * @param burstOfFeatures vector of ML features
 	 * @return std::vector<double>
 	 */
-	std::vector<double> classify(const std::vector<MlFeatures>& burstOfFeatures);
+	std::vector<ClfResult> classify(const std::vector<MlFeatures>& burstOfFeatures);
 
 private:
 	struct PyObjectDeleter {
@@ -76,7 +76,7 @@ private:
 
 	inline PyObjectUniquePtr
 	createFeaturesArray(const std::vector<MlFeatures>& burstOfFeatures) const;
-	inline std::vector<double>
+	inline std::vector<ClfResult>
 	readResultsFromReturnArray(PyObject* returnArray, size_t flowCount) const;
 
 	std::pair<std::string, std::string> getDataForImport(const std::string& bridgePath) const;
