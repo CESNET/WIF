@@ -66,6 +66,12 @@ public:
 	const std::string& mlModelPath() const noexcept { return m_mlModelPath; }
 
 	/**
+	 * @brief Reload model from disk
+	 *
+	 */
+	void reloadModel();
+
+	/**
 	 * @brief Perform classification of features via the classify function from the bridge
 	 * module
 	 *

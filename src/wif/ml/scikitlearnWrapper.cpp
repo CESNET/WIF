@@ -123,6 +123,11 @@ void ScikitlearnWrapper::init()
 	m_scikitMlModel = loadModel();
 }
 
+void ScikitlearnWrapper::reloadModel()
+{
+	m_scikitMlModel = loadModel();
+}
+
 PyObjectUniquePtr ScikitlearnWrapper::loadBridge() const
 {
 	auto [path, fileName] = parseModulePath(m_bridgePath);
