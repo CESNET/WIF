@@ -13,8 +13,8 @@ namespace WIF {
 ScikitlearnMlClassifier::ScikitlearnMlClassifier(
 	const std::string& bridgePath,
 	const std::string& mlModelPath)
-	: m_scikitlearnWrapper(std::make_unique<ScikitlearnWrapper>(bridgePath, mlModelPath))
 {
+	m_scikitlearnWrapper = std::make_unique<ScikitlearnWrapper>(bridgePath, mlModelPath);
 }
 
 ClfResult ScikitlearnMlClassifier::classify(const FlowFeatures& flowFeatures)

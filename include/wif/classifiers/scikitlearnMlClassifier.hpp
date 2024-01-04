@@ -27,7 +27,8 @@ public:
 	/**
 	 * @brief Construct a new Scikitlearn Ml Classifier object
 	 *
-	 * @throw std::runtime_error if Python's bridge fails to init properly
+	 * @param bridgePath path to Python script
+	 * @param mlModelPath path to .pickle file with trained Machine Learning model
 	 */
 	ScikitlearnMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
 
