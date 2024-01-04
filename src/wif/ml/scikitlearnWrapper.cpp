@@ -105,11 +105,6 @@ ScikitlearnWrapper::~ScikitlearnWrapper()
 	Py_Finalize();
 }
 
-void ScikitlearnWrapper::setTargetClassProbabilityIdx(size_t targetClassProbabilityIdx)
-{
-	m_targetClassProbabilityIdx = targetClassProbabilityIdx;
-}
-
 void ScikitlearnWrapper::init()
 {
 	if (_import_array() < 0) {

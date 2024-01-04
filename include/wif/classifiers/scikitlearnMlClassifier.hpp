@@ -29,10 +29,7 @@ public:
 	 *
 	 * @throw std::runtime_error if Python's bridge fails to init properly
 	 */
-	ScikitlearnMlClassifier(
-		const std::string& bridgePath,
-		const std::string& mlModelPath,
-		size_t targetClassProbabilityIdx);
+	ScikitlearnMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
 
 	/**
 	 * @brief Classify single flowFeature object

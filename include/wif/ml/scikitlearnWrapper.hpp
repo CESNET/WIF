@@ -50,16 +50,6 @@ public:
 	~ScikitlearnWrapper();
 
 	/**
-	 * @brief Set the target probability idx
-	 *
-	 * Scikit-learn library's models return array of probabilities for each class
-	 * targetClassProbabilityIdx is used to extract probability of the target class
-	 *
-	 * @param targetClassProbabilityIdx
-	 */
-	void setTargetClassProbabilityIdx(size_t targetClassProbabilityIdx);
-
-	/**
 	 * @brief Getter for used ML model path
 	 * @return const std::string&
 	 */
@@ -89,7 +79,6 @@ private:
 	PyObjectUniquePtr loadModel() const;
 	PyObjectUniquePtr callClassifyMethod(PyObject* args);
 
-	size_t m_targetClassProbabilityIdx = 0;
 	std::string m_bridgePath;
 	std::string m_mlModelPath;
 	PyObjectUniquePtr m_bridgeModule = nullptr;
