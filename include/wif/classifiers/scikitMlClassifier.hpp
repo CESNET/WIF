@@ -10,7 +10,7 @@
 
 #include "wif/classifiers/classifier.hpp"
 #include "wif/flowFeatures.hpp"
-#include "wif/ml/scikitlearnWrapper.hpp"
+#include "wif/ml/scikitMlWrapper.hpp"
 
 #include <memory>
 #include <vector>
@@ -54,7 +54,7 @@ public:
 	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 
 private:
-	std::unique_ptr<ScikitlearnWrapper> m_scikitlearnWrapper;
+	std::unique_ptr<ScikitMlWrapper> m_scikitMlWrapper;
 };
 
 } // namespace WIF

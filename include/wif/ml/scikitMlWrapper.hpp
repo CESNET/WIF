@@ -27,7 +27,7 @@ namespace WIF {
  *
  * @throw std::runtime_error if Python initialization fails to init properly
  */
-class ScikitlearnWrapper {
+class ScikitMlWrapper {
 	struct PyObjectDeleter {
 		void operator()(PyObject* ptr) { Py_XDECREF(ptr); }
 	};
@@ -41,13 +41,13 @@ public:
 	 * @param bridgePath path to Python script
 	 * @param mlModelPath path to .pickle file with trained Machine Learning model
 	 */
-	ScikitlearnWrapper(const std::string& bridgePath, const std::string& mlModelPath);
+	ScikitMlWrapper(const std::string& bridgePath, const std::string& mlModelPath);
 
 	/**
 	 * @brief Destroy the Scikitlearn Wrapper object
 	 *
 	 */
-	~ScikitlearnWrapper();
+	~ScikitMlWrapper();
 
 	/**
 	 * @brief Set feature IDs which will be used for classification

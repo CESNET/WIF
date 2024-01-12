@@ -6,11 +6,11 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "wif/ml/scikitlearnWrapper.hpp"
+#include "wif/ml/scikitMlWrapper.hpp"
 
 namespace WIF {
 
-using PyObjectUniquePtr = ScikitlearnWrapper::PyObjectUniquePtr;
+using PyObjectUniquePtr = ScikitMlWrapper::PyObjectUniquePtr;
 
 namespace {
 
@@ -59,9 +59,7 @@ std::vector<ClfResult> parseBurstOfProbaArrays(PyObject* array)
 
 } // namespace
 
-ScikitlearnWrapper::ScikitlearnWrapper(
-	const std::string& bridgePath,
-	const std::string& mlModelPath)
+ScikitMlWrapper::ScikitMlWrapper(const std::string& bridgePath, const std::string& mlModelPath)
 	: m_bridgePath(bridgePath)
 	, m_mlModelPath(mlModelPath)
 {
@@ -69,7 +67,7 @@ ScikitlearnWrapper::ScikitlearnWrapper(
 	init();
 }
 
-ScikitlearnWrapper::~ScikitlearnWrapper()
+ScikitMlWrapper::~ScikitMlWrapper()
 {
 	// Reset unique pointers so Py_XDECREF is called before Python finalization
 	m_bridgeModule.reset();
@@ -82,16 +80,16 @@ ScikitlearnWrapper::~ScikitlearnWrapper()
 	Py_Finalize();
 }
 
-void ScikitlearnWrapper::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
+void ScikitMlWrapper::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
 {
 	m_featureIDs = sourceFeatureIDs;
 }
 
-void ScikitlearnWrapper::init()
+void ScikitMlWrapper::init()
 {
 	if (_import_array() < 0) {
 		throw std::runtime_error(
-			"ScikitlearnWrapper::init() has failed. numpy.core.multiarray failed to import");
+			"ScikitMlWrapper::init() has failed. numpy.core.multiarray failed to import");
 	}
 
 	m_bridgeModule = loadBridge();
@@ -100,12 +98,12 @@ void ScikitlearnWrapper::init()
 	m_scikitMlModel = loadModel();
 }
 
-void ScikitlearnWrapper::reloadModel()
+void ScikitMlWrapper::reloadModel()
 {
 	m_scikitMlModel = loadModel();
 }
 
-PyObjectUniquePtr ScikitlearnWrapper::loadBridge() const
+PyObjectUniquePtr ScikitMlWrapper::loadBridge() const
 {
 	auto [path, fileName] = parseModulePath(m_bridgePath);
 	auto pathAppendString = "sys.path.append(\"" + path + "\")";
@@ -116,24 +114,24 @@ PyObjectUniquePtr ScikitlearnWrapper::loadBridge() const
 	PyObject* pyModule = PyImport_Import(PyUnicode_FromString(fileName.data()));
 	if (!pyModule) {
 		throw std::runtime_error(
-			"ScikitlearnWrapper::loadBridge() has failed. Bridge '" + m_bridgePath
+			"ScikitMlWrapper::loadBridge() has failed. Bridge '" + m_bridgePath
 			+ "' fails to load.");
 	}
 
 	return PyObjectUniquePtr(pyModule);
 }
 
-PyObjectUniquePtr ScikitlearnWrapper::loadFunction(const std::string& functionName) const
+PyObjectUniquePtr ScikitMlWrapper::loadFunction(const std::string& functionName) const
 {
 	PyObject* func = PyObject_GetAttrString(m_bridgeModule.get(), functionName.c_str());
 	if (!func || !PyCallable_Check(func)) {
 		throw std::runtime_error(
-			"ScikitlearnWrapper::loadFunction() has failed. " + functionName + "() was not found!");
+			"ScikitMlWrapper::loadFunction() has failed. " + functionName + "() was not found!");
 	}
 	return PyObjectUniquePtr(func);
 }
 
-PyObjectUniquePtr ScikitlearnWrapper::loadModel() const
+PyObjectUniquePtr ScikitMlWrapper::loadModel() const
 {
 	PyObjectUniquePtr args = PyObjectUniquePtr(PyTuple_New(1));
 	PyTuple_SetItem(args.get(), 0, PyUnicode_FromString(m_mlModelPath.c_str()));
@@ -141,19 +139,18 @@ PyObjectUniquePtr ScikitlearnWrapper::loadModel() const
 
 	if (!mlModel) {
 		throw std::runtime_error(
-			"ScikitlearnWrapper::loadModel() has failed. '" + m_mlModelPath + "' not found!");
+			"ScikitMlWrapper::loadModel() has failed. '" + m_mlModelPath + "' not found!");
 	}
 
 	return PyObjectUniquePtr(mlModel);
 }
 
-PyObjectUniquePtr ScikitlearnWrapper::callClassifyMethod(PyObject* args)
+PyObjectUniquePtr ScikitMlWrapper::callClassifyMethod(PyObject* args)
 {
 	return PyObjectUniquePtr(PyObject_CallObject(m_classifyFunction.get(), args));
 }
 
-std::vector<ClfResult>
-ScikitlearnWrapper::classify(const std::vector<FlowFeatures>& burstOfFeatures)
+std::vector<ClfResult> ScikitMlWrapper::classify(const std::vector<FlowFeatures>& burstOfFeatures)
 {
 	auto featuresArray = createArrayOfBurstsOfFeatures(burstOfFeatures);
 	auto arguments = buildArgsForClassifyFunction(m_scikitMlModel.get(), featuresArray.get());
@@ -161,7 +158,7 @@ ScikitlearnWrapper::classify(const std::vector<FlowFeatures>& burstOfFeatures)
 	return parseBurstOfProbaArrays(returnedArray.get());
 }
 
-PyObject* ScikitlearnWrapper::createArrayOfFeatures(const FlowFeatures& features) const
+PyObject* ScikitMlWrapper::createArrayOfFeatures(const FlowFeatures& features) const
 {
 	PyObject* pyArray = PyList_New((Py_ssize_t) m_featureIDs.size());
 	Py_ssize_t featureIdx = 0;
@@ -173,7 +170,7 @@ PyObject* ScikitlearnWrapper::createArrayOfFeatures(const FlowFeatures& features
 	return pyArray;
 }
 
-PyObjectUniquePtr ScikitlearnWrapper::createArrayOfBurstsOfFeatures(
+PyObjectUniquePtr ScikitMlWrapper::createArrayOfBurstsOfFeatures(
 	const std::vector<FlowFeatures>& burstOfFeatures) const
 {
 	PyObject* featuresArray = PyList_New((Py_ssize_t) burstOfFeatures.size());

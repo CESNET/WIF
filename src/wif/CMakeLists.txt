@@ -6,7 +6,7 @@ set(LIBWIF_SOURCES
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
 	flowFeatures.cpp
-	ml/scikitlearnWrapper.cpp
+	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
 )
 
