@@ -20,7 +20,7 @@ namespace WIF {
 /**
  * @brief Classifier performing Machine-Learning based detection via Scikit-learn library
  */
-class ScikitlearnMlClassifier : public Classifier {
+class ScikitMlClassifier : public Classifier {
 public:
 	/**
 	 * @brief Construct a new Scikitlearn Ml Classifier object
@@ -28,7 +28,7 @@ public:
 	 * @param bridgePath path to Python script
 	 * @param mlModelPath path to .pickle file with trained Machine Learning model
 	 */
-	ScikitlearnMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
+	ScikitMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
 
 	/**
 	 * @brief Set feature IDs which will be used for classification

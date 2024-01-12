@@ -6,30 +6,30 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "wif/classifiers/scikitlearnMlClassifier.hpp"
+#include "wif/classifiers/scikitMlClassifier.hpp"
 
 namespace WIF {
 
-ScikitlearnMlClassifier::ScikitlearnMlClassifier(
+ScikitMlClassifier::ScikitMlClassifier(
 	const std::string& bridgePath,
 	const std::string& mlModelPath)
 {
 	m_scikitlearnWrapper = std::make_unique<ScikitlearnWrapper>(bridgePath, mlModelPath);
 }
 
-void ScikitlearnMlClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
+void ScikitMlClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
 {
 	Classifier::setFeatureSourceIDs(sourceFeatureIDs);
 	m_scikitlearnWrapper->setFeatureSourceIDs(sourceFeatureIDs);
 }
 
-ClfResult ScikitlearnMlClassifier::classify(const FlowFeatures& flowFeatures)
+ClfResult ScikitMlClassifier::classify(const FlowFeatures& flowFeatures)
 {
 	return m_scikitlearnWrapper->classify({flowFeatures})[0];
 }
 
 std::vector<ClfResult>
-ScikitlearnMlClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures)
+ScikitMlClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures)
 {
 	return m_scikitlearnWrapper->classify(burstOfFlowsFeatures);
 }
