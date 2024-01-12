@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "wif/flowFeatures.hpp"
 #include "wif/storage/clfResult.hpp"
 
 #include <memory>
@@ -33,7 +34,6 @@ class ScikitlearnWrapper {
 
 public:
 	using PyObjectUniquePtr = std::unique_ptr<PyObject, PyObjectDeleter>;
-	using MlFeatures = std::vector<double>;
 
 	/**
 	 * @brief Construct a new Scikitlearn Wrapper object
@@ -48,6 +48,13 @@ public:
 	 *
 	 */
 	~ScikitlearnWrapper();
+
+	/**
+	 * @brief Set feature IDs which will be used for classification
+	 *
+	 * @param sourceFeatureIDs
+	 */
+	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
 
 	/**
 	 * @brief Getter for used ML model path
@@ -68,9 +75,9 @@ public:
 	 * @throw std::runtime_error when an error occurs during calls to Python's API
 	 *
 	 * @param burstOfFeatures vector of ML features
-	 * @return std::vector<double>
+	 * @return std::vector<ClfResult>
 	 */
-	std::vector<ClfResult> classify(const std::vector<MlFeatures>& burstOfFeatures);
+	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFeatures);
 
 private:
 	void init();
@@ -79,12 +86,17 @@ private:
 	PyObjectUniquePtr loadModel() const;
 	PyObjectUniquePtr callClassifyMethod(PyObject* args);
 
+	PyObject* createArrayOfFeatures(const FlowFeatures& features) const;
+	PyObjectUniquePtr
+	createArrayOfBurstsOfFeatures(const std::vector<FlowFeatures>& burstOfFeatures) const;
+
 	std::string m_bridgePath;
 	std::string m_mlModelPath;
 	PyObjectUniquePtr m_bridgeModule = nullptr;
 	PyObjectUniquePtr m_initFunction = nullptr;
 	PyObjectUniquePtr m_scikitMlModel = nullptr;
 	PyObjectUniquePtr m_classifyFunction = nullptr;
+	std::vector<FeatureID> m_featureIDs;
 };
 
 } // namespace WIF

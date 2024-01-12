@@ -21,8 +21,6 @@ namespace WIF {
  * @brief Classifier performing Machine-Learning based detection via Scikit-learn library
  */
 class ScikitlearnMlClassifier : public Classifier {
-	using MlFeatures = ScikitlearnWrapper::MlFeatures;
-
 public:
 	/**
 	 * @brief Construct a new Scikitlearn Ml Classifier object
@@ -31,6 +29,13 @@ public:
 	 * @param mlModelPath path to .pickle file with trained Machine Learning model
 	 */
 	ScikitlearnMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
+
+	/**
+	 * @brief Set feature IDs which will be used for classification
+	 *
+	 * @param sourceFeatureIDs
+	 */
+	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs) override;
 
 	/**
 	 * @brief Classify single flowFeature object
@@ -49,8 +54,6 @@ public:
 	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 
 private:
-	inline MlFeatures createFeaturesFromFlow(const FlowFeatures& flowFeatures) const;
-
 	std::unique_ptr<ScikitlearnWrapper> m_scikitlearnWrapper;
 };
 

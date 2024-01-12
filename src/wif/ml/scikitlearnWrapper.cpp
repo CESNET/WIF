@@ -11,7 +11,6 @@
 namespace WIF {
 
 using PyObjectUniquePtr = ScikitlearnWrapper::PyObjectUniquePtr;
-using MlFeatures = ScikitlearnWrapper::MlFeatures;
 
 namespace {
 
@@ -30,28 +29,6 @@ std::pair<std::string, std::string> parseModulePath(const std::string& modulePat
 PyObjectUniquePtr buildArgsForClassifyFunction(PyObject* mlModelPtr, PyObject* featuresArray)
 {
 	return PyObjectUniquePtr(Py_BuildValue("(OO)", mlModelPtr, featuresArray));
-}
-
-PyObject* createArrayOfFeatures(const MlFeatures& mlFeatures)
-{
-	PyObject* pyArray = PyList_New((Py_ssize_t) mlFeatures.size());
-	Py_ssize_t featureIdx = 0;
-	for (const auto& feature : mlFeatures) {
-		PyList_SetItem(pyArray, featureIdx, PyFloat_FromDouble(feature));
-		++featureIdx;
-	}
-	return pyArray;
-}
-
-PyObjectUniquePtr createArrayOfBurstsOfFeatures(const std::vector<MlFeatures>& burstOfFeatures)
-{
-	PyObject* featuresArray = PyList_New((Py_ssize_t) burstOfFeatures.size());
-	Py_ssize_t burstIndex = 0;
-	for (const auto& features : burstOfFeatures) {
-		PyList_SetItem(featuresArray, burstIndex, createArrayOfFeatures(features));
-		++burstIndex;
-	}
-	return PyObjectUniquePtr(featuresArray);
 }
 
 ClfResult parseBurstOfProbaArray(PyObject* array)
@@ -103,6 +80,11 @@ ScikitlearnWrapper::~ScikitlearnWrapper()
 	PyRun_SimpleString("sys.stdout.flush()");
 	PyRun_SimpleString("sys.stderr.flush()");
 	Py_Finalize();
+}
+
+void ScikitlearnWrapper::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
+{
+	m_featureIDs = sourceFeatureIDs;
 }
 
 void ScikitlearnWrapper::init()
@@ -170,12 +152,37 @@ PyObjectUniquePtr ScikitlearnWrapper::callClassifyMethod(PyObject* args)
 	return PyObjectUniquePtr(PyObject_CallObject(m_classifyFunction.get(), args));
 }
 
-std::vector<ClfResult> ScikitlearnWrapper::classify(const std::vector<MlFeatures>& burstOfFeatures)
+std::vector<ClfResult>
+ScikitlearnWrapper::classify(const std::vector<FlowFeatures>& burstOfFeatures)
 {
 	auto featuresArray = createArrayOfBurstsOfFeatures(burstOfFeatures);
 	auto arguments = buildArgsForClassifyFunction(m_scikitMlModel.get(), featuresArray.get());
 	auto returnedArray = callClassifyMethod(arguments.get());
 	return parseBurstOfProbaArrays(returnedArray.get());
+}
+
+PyObject* ScikitlearnWrapper::createArrayOfFeatures(const FlowFeatures& features) const
+{
+	PyObject* pyArray = PyList_New((Py_ssize_t) m_featureIDs.size());
+	Py_ssize_t featureIdx = 0;
+	for (const auto& featureID : m_featureIDs) {
+		double value = features.get<double>(featureID);
+		PyList_SetItem(pyArray, featureIdx, PyFloat_FromDouble(value));
+		++featureIdx;
+	}
+	return pyArray;
+}
+
+PyObjectUniquePtr ScikitlearnWrapper::createArrayOfBurstsOfFeatures(
+	const std::vector<FlowFeatures>& burstOfFeatures) const
+{
+	PyObject* featuresArray = PyList_New((Py_ssize_t) burstOfFeatures.size());
+	Py_ssize_t burstIndex = 0;
+	for (const auto& features : burstOfFeatures) {
+		PyList_SetItem(featuresArray, burstIndex, createArrayOfFeatures(features));
+		++burstIndex;
+	}
+	return PyObjectUniquePtr(featuresArray);
 }
 
 } // namespace WIF
