@@ -19,12 +19,12 @@ ScikitlearnMlClassifier::ScikitlearnMlClassifier(
 	m_scikitlearnWrapper->setTargetClassProbabilityIdx(targetClassProbabilityIdx);
 }
 
-double ScikitlearnMlClassifier::classify(const FlowFeatures& flowFeatures)
+ClfResult ScikitlearnMlClassifier::classify(const FlowFeatures& flowFeatures)
 {
-	return m_scikitlearnWrapper->classify({createFeaturesFromFlow(flowFeatures)})[0];
+	return ClfResult(m_scikitlearnWrapper->classify({createFeaturesFromFlow(flowFeatures)})[0]);
 }
 
-std::vector<double>
+std::vector<ClfResult>
 ScikitlearnMlClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures)
 {
 	std::vector<MlFeatures> burstOfFeatures;

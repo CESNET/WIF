@@ -11,6 +11,7 @@
 
 #include "wif/combinators/combinator.hpp"
 #include "wif/flowFeatures.hpp"
+#include "wif/storage/clfResult.hpp"
 
 #include <memory>
 #include <vector>
@@ -35,7 +36,7 @@ public:
 	 *
 	 * @param sourceFeatureIDs
 	 */
-	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
+	virtual void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
 
 	/**
 	 * @brief Perform classification of one flow
@@ -43,7 +44,7 @@ public:
 	 * @param flowFeatures flow features to classify
 	 * @return double classification result
 	 */
-	virtual double classify(const FlowFeatures& flowFeatures) = 0;
+	virtual ClfResult classify(const FlowFeatures& flowFeatures) = 0;
 
 	/**
 	 * @brief Perform classification of burst of flows
@@ -51,9 +52,9 @@ public:
 	 * @param burstOfFlowFeatures burst of flow features to classify
 	 * @return std::vector<double> classification results
 	 */
-	virtual std::vector<double> classify(const std::vector<FlowFeatures>& burstOfFlowFeatures) = 0;
+	virtual std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowFeatures)
+		= 0;
 
-protected:
 	/**
 	 * @brief Getter for source feature IDs
 	 *

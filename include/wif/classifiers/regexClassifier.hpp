@@ -41,7 +41,7 @@ public:
 	 * @param flowFeatures
 	 * @return double
 	 */
-	double classify(const FlowFeatures& flowFeatures) override;
+	ClfResult classify(const FlowFeatures& flowFeatures) override;
 
 	/**
 	 * @brief Classify a burst of flow features
@@ -49,7 +49,7 @@ public:
 	 * @param burstOfFlowsFeatures
 	 * @return std::vector<double>
 	 */
-	std::vector<double> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
+	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 
 private:
 	double matchPattern(const std::string& str) const;

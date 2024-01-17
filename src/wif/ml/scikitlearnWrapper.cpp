@@ -118,18 +118,19 @@ ScikitlearnWrapper::createFeaturesArray(const std::vector<MlFeatures>& burstOfFe
 	return featuresArray;
 }
 
-std::vector<double>
+std::vector<ClfResult>
 ScikitlearnWrapper::readResultsFromReturnArray(PyObject* returnArray, size_t flowCount) const
 {
-	std::vector<double> probabilities(flowCount, 0);
+	std::vector<ClfResult> probabilities;
+	probabilities.reserve(flowCount);
 	for (size_t flowIdx = 0; flowIdx < flowCount; ++flowIdx) {
-		probabilities[flowIdx] = PyFloat_AsDouble(
-			PyList_GetItem(PyList_GetItem(returnArray, flowIdx), m_targetClassProbabilityIdx));
+		probabilities[flowIdx] = ClfResult(PyFloat_AsDouble(
+			PyList_GetItem(PyList_GetItem(returnArray, flowIdx), m_targetClassProbabilityIdx)));
 	}
 	return probabilities;
 }
 
-std::vector<double> ScikitlearnWrapper::classify(const std::vector<MlFeatures>& burstOfFeatures)
+std::vector<ClfResult> ScikitlearnWrapper::classify(const std::vector<MlFeatures>& burstOfFeatures)
 {
 	PyObjectUniquePtr featuresArray = createFeaturesArray(burstOfFeatures);
 	PyObjectUniquePtr classifyArgs

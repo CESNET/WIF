@@ -20,7 +20,7 @@ RegexClassifier::RegexClassifier(
 	validateCombinator();
 }
 
-double RegexClassifier::classify(const FlowFeatures& flowFeatures)
+ClfResult RegexClassifier::classify(const FlowFeatures& flowFeatures)
 {
 	std::vector<double> flowFeatureResults;
 	for (FeatureID featureID : sourceFeatureIDs()) {
@@ -28,12 +28,13 @@ double RegexClassifier::classify(const FlowFeatures& flowFeatures)
 		flowFeatureResults.emplace_back(matchResult);
 	}
 
-	return m_combinator->combine(flowFeatureResults);
+	return ClfResult(m_combinator->combine(flowFeatureResults));
 }
 
-std::vector<double> RegexClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures)
+std::vector<ClfResult>
+RegexClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures)
 {
-	std::vector<double> burstResults;
+	std::vector<ClfResult> burstResults;
 	burstResults.reserve(burstOfFlowsFeatures.size());
 
 	for (const auto& flowFeatures : burstOfFlowsFeatures) {
