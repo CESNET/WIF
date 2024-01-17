@@ -13,7 +13,7 @@
 
 namespace WIF {
 
-double AverageCombinator::combine(const std::vector<double>& valuesToCombine) const
+double AverageCombinator::combine(const std::vector<double>& valuesToCombine)
 {
 	double valuesSum = std::accumulate(valuesToCombine.begin(), valuesToCombine.end(), 0.0);
 	return valuesToCombine.size() ? valuesSum / valuesToCombine.size() : 0;

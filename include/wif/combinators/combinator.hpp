@@ -32,7 +32,7 @@ public:
 	 * @param valuesToCombine vector of doubles to combine
 	 * @return double combined double value
 	 */
-	virtual double combine(const std::vector<double>& valuesToCombine) const = 0;
+	virtual double combine(const std::vector<double>& valuesToCombine) = 0;
 };
 
 } // namespace WIF

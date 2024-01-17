@@ -10,7 +10,7 @@
 
 namespace WIF {
 
-double BinaryDSTCombinator::combine(const std::vector<double>& valuesToCombine) const
+double BinaryDSTCombinator::combine(const std::vector<double>& valuesToCombine)
 {
 	if (valuesToCombine.size() == 0) {
 		return 0.0;

@@ -13,7 +13,7 @@
 
 namespace WIF {
 
-double SumCombinator::combine(const std::vector<double>& valuesToCombine) const
+double SumCombinator::combine(const std::vector<double>& valuesToCombine)
 {
 	return std::accumulate(valuesToCombine.begin(), valuesToCombine.end(), 0.0);
 }
