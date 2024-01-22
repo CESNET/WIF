@@ -10,7 +10,7 @@
 
 #include "wif/classifiers/classifier.hpp"
 #include "wif/flowFeatures.hpp"
-#include "wif/ml/scikitlearnWrapper.hpp"
+#include "wif/ml/scikitMlWrapper.hpp"
 
 #include <memory>
 #include <vector>
@@ -20,19 +20,22 @@ namespace WIF {
 /**
  * @brief Classifier performing Machine-Learning based detection via Scikit-learn library
  */
-class ScikitlearnMlClassifier : public Classifier {
-	using MlFeatures = ScikitlearnWrapper::MlFeatures;
-
+class ScikitMlClassifier : public Classifier {
 public:
 	/**
 	 * @brief Construct a new Scikitlearn Ml Classifier object
 	 *
-	 * @throw std::runtime_error if Python's bridge fails to init properly
+	 * @param bridgePath path to Python script
+	 * @param mlModelPath path to .pickle file with trained Machine Learning model
 	 */
-	ScikitlearnMlClassifier(
-		const std::string& bridgePath,
-		const std::string& mlModelPath,
-		size_t targetClassProbabilityIdx);
+	ScikitMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
+
+	/**
+	 * @brief Set feature IDs which will be used for classification
+	 *
+	 * @param sourceFeatureIDs
+	 */
+	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs) override;
 
 	/**
 	 * @brief Classify single flowFeature object
@@ -51,9 +54,7 @@ public:
 	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 
 private:
-	inline MlFeatures createFeaturesFromFlow(const FlowFeatures& flowFeatures) const;
-
-	std::unique_ptr<ScikitlearnWrapper> m_scikitlearnWrapper;
+	std::unique_ptr<ScikitMlWrapper> m_scikitMlWrapper;
 };
 
 } // namespace WIF

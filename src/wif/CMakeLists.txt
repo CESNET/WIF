@@ -1,12 +1,12 @@
 set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
 	classifiers/regexClassifier.cpp
-	classifiers/scikitlearnMlClassifier.cpp
+	classifiers/scikitMlClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
 	flowFeatures.cpp
-	ml/scikitlearnWrapper.cpp
+	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
 )
 
