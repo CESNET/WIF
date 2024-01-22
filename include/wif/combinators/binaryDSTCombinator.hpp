@@ -33,7 +33,7 @@ public:
 	 * @param valuesToCombine vector of doubles to combine
 	 * @return double DST combination of input values
 	 */
-	double combine(const std::vector<double>& valuesToCombine) const override;
+	double combine(const std::vector<double>& valuesToCombine) override;
 };
 
 } // namespace WIF

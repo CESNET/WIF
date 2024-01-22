@@ -28,7 +28,7 @@ public:
 	 * @param valuesToCombine vector of doubles to combine
 	 * @return double average of values in the input vector
 	 */
-	double combine(const std::vector<double>& valuesToCombine) const override;
+	double combine(const std::vector<double>& valuesToCombine) override;
 };
 
 } // namespace WIF
