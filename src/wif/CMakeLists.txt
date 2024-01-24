@@ -9,6 +9,7 @@ set(LIBWIF_SOURCES
 	flowFeatures.cpp
 	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
+	storage/ipAddress.cpp
 )
 
 if(BUILD_WITH_UNIREC)
