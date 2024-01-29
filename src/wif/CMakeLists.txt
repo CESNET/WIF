@@ -5,6 +5,7 @@ set(LIBWIF_SOURCES
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
+	filesystem/fileModificationChecker.cpp
 	flowFeatures.cpp
 	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
