@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include "wif/storage/ipAddress.hpp"
+
 #include <cstdint>
 #include <string>
 #include <variant>
@@ -71,8 +73,15 @@ public:
 	void clear();
 
 private:
-	using SupportedVariantTypes
-		= std::variant<std::monostate, uint8_t, uint16_t, uint32_t, uint64_t, double, std::string>;
+	using SupportedVariantTypes = std::variant<
+		std::monostate,
+		uint8_t,
+		uint16_t,
+		uint32_t,
+		uint64_t,
+		double,
+		std::string,
+		IpAddress>;
 	std::vector<SupportedVariantTypes> m_features;
 };
 
