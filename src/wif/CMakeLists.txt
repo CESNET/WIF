@@ -14,6 +14,7 @@ set(LIBWIF_SOURCES
 
 if(BUILD_WITH_UNIREC)
 	list(APPEND LIBWIF_SOURCES
+		reporters/unirecReporter.cpp
 	)
 endif()
 
