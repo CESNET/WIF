@@ -9,7 +9,6 @@
 #pragma once
 
 #include "wif/classifiers/classifier.hpp"
-#include "wif/flowFeatures.hpp"
 #include "wif/ml/scikitMlWrapper.hpp"
 
 #include <memory>

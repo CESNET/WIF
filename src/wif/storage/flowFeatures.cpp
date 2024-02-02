@@ -7,7 +7,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include "wif/flowFeatures.hpp"
+#include "wif/storage/flowFeatures.hpp"
 
 namespace WIF {
 

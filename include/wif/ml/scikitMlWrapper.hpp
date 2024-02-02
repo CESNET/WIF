@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "wif/flowFeatures.hpp"
 #include "wif/storage/clfResult.hpp"
+#include "wif/storage/flowFeatures.hpp"
 
 #include <memory>
 #include <stdexcept>
