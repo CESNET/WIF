@@ -9,12 +9,10 @@
 
 #pragma once
 
-#include "wif/storage/ipAddress.hpp"
+#include "wif/storage/dataVariant.hpp"
 
 #include <cstdint>
 #include <string>
-#include <variant>
-#include <vector>
 
 namespace WIF {
 
@@ -73,16 +71,7 @@ public:
 	void clear();
 
 private:
-	using SupportedVariantTypes = std::variant<
-		std::monostate,
-		uint8_t,
-		uint16_t,
-		uint32_t,
-		uint64_t,
-		double,
-		std::string,
-		IpAddress>;
-	std::vector<SupportedVariantTypes> m_features;
+	std::vector<DataVariant> m_features;
 };
 
 } // namespace WIF
