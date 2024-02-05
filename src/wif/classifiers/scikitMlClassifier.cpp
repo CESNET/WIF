@@ -28,6 +28,11 @@ void ScikitMlClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourc
 	m_scikitMlWrapper->setFeatureSourceIDs(sourceFeatureIDs);
 }
 
+void ScikitMlClassifier::reloadModelFromDisk()
+{
+	m_scikitMlWrapper->reloadModel();
+}
+
 ClfResult ScikitMlClassifier::classify(const FlowFeatures& flowFeatures)
 {
 	return m_scikitMlWrapper->classify({flowFeatures})[0];

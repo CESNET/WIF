@@ -44,6 +44,11 @@ public:
 	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs) override;
 
 	/**
+	 * @brief Reload used ML model from disk
+	 */
+	void reloadModelFromDisk();
+
+	/**
 	 * @brief Classify single flowFeature object
 	 *
 	 * @param flowFeatures
