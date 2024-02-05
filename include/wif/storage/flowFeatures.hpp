@@ -46,6 +46,14 @@ public:
 	}
 
 	/**
+	 * @brief Get raw feature
+	 *
+	 * @param featureID the feature identifier
+	 * @return const DataVariant& raw feature
+	 */
+	const DataVariant& getRaw(FeatureID featureID) const { return m_features.at(featureID); }
+
+	/**
 	 * @brief Set feature
 	 *
 	 * @tparam T feature type
