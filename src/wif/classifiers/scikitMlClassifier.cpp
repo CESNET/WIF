@@ -17,6 +17,11 @@ ScikitMlClassifier::ScikitMlClassifier(
 	m_scikitMlWrapper = std::make_unique<ScikitMlWrapper>(bridgePath, mlModelPath);
 }
 
+const std::string& ScikitMlClassifier::getMlModelPath() const noexcept
+{
+	return m_scikitMlWrapper->getMlModelPath();
+}
+
 void ScikitMlClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
 {
 	Classifier::setFeatureSourceIDs(sourceFeatureIDs);

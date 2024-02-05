@@ -30,6 +30,13 @@ public:
 	ScikitMlClassifier(const std::string& bridgePath, const std::string& mlModelPath);
 
 	/**
+	 * @brief Get the path to the used ML model
+	 *
+	 * @return const std::string& the path to the used ML model
+	 */
+	const std::string& getMlModelPath() const noexcept;
+
+	/**
 	 * @brief Set feature IDs which will be used for classification
 	 *
 	 * @param sourceFeatureIDs
