@@ -21,6 +21,7 @@ set(LIBWIF_LIBS
 
 if(BUILD_WITH_UNIREC)
 	list(APPEND LIBWIF_SOURCES
+		classifiers/alfClassifier.cpp
 		reporters/unirecReporter.cpp
 	)
 	list(APPEND LIBWIF_LIBS
