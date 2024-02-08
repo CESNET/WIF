@@ -4,6 +4,7 @@ find_package(Python3 REQUIRED COMPONENTS Development NumPy)
 
 if(BUILD_WITH_UNIREC)
 	find_package(UNIREC 3.0.0 REQUIRED)
+	find_package(UNIREC++ 3.2.0 REQUIRED)
 endif()
 
 # Set define for none depricated API for NUMPY
