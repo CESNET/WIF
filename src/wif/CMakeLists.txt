@@ -12,18 +12,22 @@ set(LIBWIF_SOURCES
 	storage/ipAddress.cpp
 )
 
-if(BUILD_WITH_UNIREC)
-	list(APPEND LIBWIF_SOURCES
-		reporters/unirecReporter.cpp
-	)
-endif()
-
 set(LIBWIF_LIBS
 	Boost::regex
 	Python3::Python
 	Python3::NumPy
 	dstlib::dst
 )
+
+if(BUILD_WITH_UNIREC)
+	list(APPEND LIBWIF_SOURCES
+		reporters/unirecReporter.cpp
+	)
+	list(APPEND LIBWIF_LIBS
+		unirec::unirec
+		unirec::unirec++
+	)
+endif()
 
 add_library(wif SHARED ${LIBWIF_SOURCES})
 target_link_libraries(wif PRIVATE ${LIBWIF_LIBS})
