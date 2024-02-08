@@ -11,7 +11,6 @@
 
 #include "wif/classifiers/classifier.hpp"
 #include "wif/combinators/combinator.hpp"
-#include "wif/flowFeatures.hpp"
 #include "wif/regex/regexPattern.hpp"
 
 #include <memory>

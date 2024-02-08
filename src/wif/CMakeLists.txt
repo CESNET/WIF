@@ -6,9 +6,9 @@ set(LIBWIF_SOURCES
 	combinators/binaryDSTCombinator.cpp
 	combinators/sumCombinator.cpp
 	filesystem/fileModificationChecker.cpp
-	flowFeatures.cpp
 	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
+	storage/flowFeatures.cpp
 	storage/ipAddress.cpp
 )
 
