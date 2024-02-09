@@ -79,12 +79,12 @@ void AlfClassifier::handleSingleReport(const FlowFeatures flowFeatures, const Cl
 	m_reporter.onRecordStart();
 
 	// Identification fields are reported first
-	for (const auto id : sourceFeatureIDs()) {
+	for (const auto id : getSourceFeatureIDs()) {
 		m_reporter.report(flowFeatures.getRaw(id));
 	}
 
 	// ML features are reported as second
-	for (const auto id : m_mlClassifier.sourceFeatureIDs()) {
+	for (const auto id : m_mlClassifier.getSourceFeatureIDs()) {
 		m_reporter.report(flowFeatures.getRaw(id));
 	}
 
