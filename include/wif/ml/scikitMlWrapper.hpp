@@ -57,10 +57,10 @@ public:
 	void setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs);
 
 	/**
-	 * @brief Getter for used ML model path
+	 * @brief Getter for path of the used ML model
 	 * @return const std::string&
 	 */
-	const std::string& mlModelPath() const noexcept { return m_mlModelPath; }
+	const std::string& getMlModelPath() const noexcept { return m_mlModelPath; }
 
 	/**
 	 * @brief Reload model from disk
