@@ -23,7 +23,7 @@ RegexClassifier::RegexClassifier(
 ClfResult RegexClassifier::classify(const FlowFeatures& flowFeatures)
 {
 	std::vector<double> flowFeatureResults;
-	for (FeatureID featureID : sourceFeatureIDs()) {
+	for (FeatureID featureID : getSourceFeatureIDs()) {
 		double matchResult = matchPattern(flowFeatures.get<std::string>(featureID));
 		flowFeatureResults.emplace_back(matchResult);
 	}

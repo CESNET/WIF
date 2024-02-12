@@ -16,7 +16,7 @@ void Classifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeature
 	m_sourceFeatureIDs = sourceFeatureIDs;
 }
 
-const std::vector<FeatureID>& Classifier::sourceFeatureIDs() const
+const std::vector<FeatureID>& Classifier::getSourceFeatureIDs() const
 {
 	return m_sourceFeatureIDs;
 }

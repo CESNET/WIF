@@ -60,7 +60,7 @@ public:
 	 *
 	 * @return const std::vector<FeatureID>&
 	 */
-	const std::vector<FeatureID>& sourceFeatureIDs() const;
+	const std::vector<FeatureID>& getSourceFeatureIDs() const;
 
 private:
 	std::vector<FeatureID> m_sourceFeatureIDs;
