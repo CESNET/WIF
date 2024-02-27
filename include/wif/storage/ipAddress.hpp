@@ -71,6 +71,12 @@ public:
 	bool empty() const noexcept;
 
 	/**
+	 * Getter for version of the IP address.
+	 * @return IpVersion version of the held IP address
+	 */
+	IpVersion getVersion() const noexcept;
+
+	/**
 	 * @brief Checks if the IP address is version 4
 	 * @return bool
 	 */

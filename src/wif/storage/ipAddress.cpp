@@ -64,6 +64,11 @@ bool IpAddress::empty() const noexcept
 	return false;
 }
 
+IpAddress::IpVersion IpAddress::getVersion() const noexcept
+{
+	return isIPv4() ? IpVersion::V4 : IpVersion::V6;
+}
+
 bool IpAddress::isIPv4() const noexcept
 {
 	return (m_ipData.ui64[0] == 0 && m_ipData.ui32[3] == IPV4_FILLING_CONSTANT);
