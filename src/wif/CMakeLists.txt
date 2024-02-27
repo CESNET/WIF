@@ -1,5 +1,6 @@
 set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
+	classifiers/ipPrefixClassifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitMlClassifier.cpp
 	combinators/averageCombinator.cpp
