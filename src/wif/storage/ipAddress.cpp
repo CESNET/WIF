@@ -138,6 +138,37 @@ IpAddress operator~(const IpAddress& address)
 	return result;
 }
 
+bool operator<(const IpAddress& l, const IpAddress& r)
+{
+	// All IPv4 are before IPv6
+	if (l.isIPv4() && r.isIPv6()) {
+		return true;
+	} else if (l.isIPv6() && r.isIPv4()) {
+		return false;
+	}
+
+	if (l.isIPv4()) {
+		return l.compareV4(r);
+	} else {
+		return l.compareV6(r);
+	}
+}
+
+bool IpAddress::compareV4(const IpAddress& other) const
+{
+	return v4AsInt() < other.v4AsInt();
+}
+
+bool IpAddress::compareV6(const IpAddress& other) const
+{
+	for (unsigned byteIdx = 0; byteIdx < SIZE_IN_UINT8; ++byteIdx) {
+		if (m_ipData.ui8[byteIdx] != other.m_ipData.ui8[byteIdx]) {
+			return m_ipData.ui8[byteIdx] < other.m_ipData.ui8[byteIdx];
+		}
+	}
+	return false;
+}
+
 void IpAddress::createV4FromBytes(const uint8_t* bytes, bool isLittleEndian)
 {
 	if (isLittleEndian) {
