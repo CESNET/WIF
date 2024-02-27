@@ -143,6 +143,14 @@ public:
 	friend IpAddress operator&(const IpAddress& l, const IpAddress& r);
 
 	/**
+	 * @brief Bitwise NOT operator
+	 *
+	 * @param address IP address whose bits will be flipped
+	 * @return IpAddress IP address with flipped bits
+	 */
+	friend IpAddress operator~(const IpAddress& address);
+
+	/**
 	 * @brief Comparison operator <
 	 *
 	 * @param other IP address object to print

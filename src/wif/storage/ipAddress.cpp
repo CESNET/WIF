@@ -129,6 +129,15 @@ IpAddress operator&(const IpAddress& l, const IpAddress& r)
 	return result;
 }
 
+IpAddress operator~(const IpAddress& address)
+{
+	IpAddress result;
+	for (unsigned ui64Idx = 0; ui64Idx < IpAddress::SIZE_IN_UINT64; ++ui64Idx) {
+		result.m_ipData.ui64[ui64Idx] = ~(address.m_ipData.ui64[ui64Idx]);
+	}
+	return result;
+}
+
 void IpAddress::createV4FromBytes(const uint8_t* bytes, bool isLittleEndian)
 {
 	if (isLittleEndian) {
