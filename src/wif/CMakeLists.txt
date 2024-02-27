@@ -10,6 +10,7 @@ set(LIBWIF_SOURCES
 	regex/regexPattern.cpp
 	storage/flowFeatures.cpp
 	storage/ipAddress.cpp
+	utils/ipPrefix.cpp
 )
 
 set(LIBWIF_LIBS
