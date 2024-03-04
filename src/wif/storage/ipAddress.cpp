@@ -64,6 +64,11 @@ bool IpAddress::empty() const noexcept
 	return false;
 }
 
+IpAddress::IpVersion IpAddress::getVersion() const noexcept
+{
+	return isIPv4() ? IpVersion::V4 : IpVersion::V6;
+}
+
 bool IpAddress::isIPv4() const noexcept
 {
 	return (m_ipData.ui64[0] == 0 && m_ipData.ui32[3] == IPV4_FILLING_CONSTANT);
@@ -122,6 +127,46 @@ IpAddress operator&(const IpAddress& l, const IpAddress& r)
 		result.m_ipData.ui64[ui64Idx] = l.m_ipData.ui64[ui64Idx] & r.m_ipData.ui64[ui64Idx];
 	}
 	return result;
+}
+
+IpAddress operator~(const IpAddress& address)
+{
+	IpAddress result;
+	for (unsigned ui64Idx = 0; ui64Idx < IpAddress::SIZE_IN_UINT64; ++ui64Idx) {
+		result.m_ipData.ui64[ui64Idx] = ~(address.m_ipData.ui64[ui64Idx]);
+	}
+	return result;
+}
+
+bool operator<(const IpAddress& l, const IpAddress& r)
+{
+	// All IPv4 are before IPv6
+	if (l.isIPv4() && r.isIPv6()) {
+		return true;
+	} else if (l.isIPv6() && r.isIPv4()) {
+		return false;
+	}
+
+	if (l.isIPv4()) {
+		return l.compareV4(r);
+	} else {
+		return l.compareV6(r);
+	}
+}
+
+bool IpAddress::compareV4(const IpAddress& other) const
+{
+	return v4AsInt() < other.v4AsInt();
+}
+
+bool IpAddress::compareV6(const IpAddress& other) const
+{
+	for (unsigned byteIdx = 0; byteIdx < SIZE_IN_UINT8; ++byteIdx) {
+		if (m_ipData.ui8[byteIdx] != other.m_ipData.ui8[byteIdx]) {
+			return m_ipData.ui8[byteIdx] < other.m_ipData.ui8[byteIdx];
+		}
+	}
+	return false;
 }
 
 void IpAddress::createV4FromBytes(const uint8_t* bytes, bool isLittleEndian)

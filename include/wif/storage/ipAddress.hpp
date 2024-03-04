@@ -71,6 +71,12 @@ public:
 	bool empty() const noexcept;
 
 	/**
+	 * Getter for version of the IP address.
+	 * @return IpVersion version of the held IP address
+	 */
+	IpVersion getVersion() const noexcept;
+
+	/**
 	 * @brief Checks if the IP address is version 4
 	 * @return bool
 	 */
@@ -137,12 +143,21 @@ public:
 	friend IpAddress operator&(const IpAddress& l, const IpAddress& r);
 
 	/**
+	 * @brief Bitwise NOT operator
+	 *
+	 * @param address IP address whose bits will be flipped
+	 * @return IpAddress IP address with flipped bits
+	 */
+	friend IpAddress operator~(const IpAddress& address);
+
+	/**
 	 * @brief Comparison operator <
 	 *
-	 * @param other IP address object to print
-	 * @return bool
+	 * @param l left operand
+	 * @param r right operand
+	 * @return bool true if l is less than r
 	 */
-	bool operator<(const IpAddress& other) const;
+	friend bool operator<(const IpAddress& l, const IpAddress& r);
 
 private:
 	constexpr static size_t SIZE_IN_UINT8 = 16;
@@ -158,6 +173,9 @@ private:
 	};
 
 	constexpr static uint32_t IPV4_FILLING_CONSTANT = 0xFFFFFFFF;
+
+	bool compareV4(const IpAddress& other) const;
+	bool compareV6(const IpAddress& other) const;
 
 	void createV4FromBytes(const uint8_t* bytes, bool isLittleEndian);
 	void createV6FromBytes(const uint8_t* bytes, bool isLittleEndian);
