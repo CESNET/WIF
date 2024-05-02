@@ -45,3 +45,7 @@ tidy: all
 .PHONY: tidy-fix
 tidy-fix: all
 	$(RUN_CLANG_TIDY) -p build -quiet -fix -j $(shell nproc) $(SOURCE_DIR)
+
+.PHONY: docs
+docs:
+	doxygen
