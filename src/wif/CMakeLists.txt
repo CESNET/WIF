@@ -5,6 +5,7 @@ set(LIBWIF_SOURCES
 	classifiers/scikitMlClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
+	combinators/majorityCombinator.cpp
 	combinators/sumCombinator.cpp
 	filesystem/fileModificationChecker.cpp
 	ml/scikitMlWrapper.cpp
