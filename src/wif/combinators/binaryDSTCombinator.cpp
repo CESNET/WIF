@@ -1,6 +1,6 @@
 /**
  * @file
- * @author Richard Plny <plnyrich@fit.cvut.cz>
+ * @author Richard Plny <richard.plny@cesnet.cz>
  * @brief Binary DST combinator implementation
  *
  * SPDX-License-Identifier: BSD-3-Clause
