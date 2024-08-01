@@ -8,12 +8,14 @@
 
 #include "wif/combinators/binaryDSTCombinator.hpp"
 
+#include <stdexcept>
+
 namespace WIF {
 
 double BinaryDSTCombinator::combine(const std::vector<double>& valuesToCombine)
 {
-	if (valuesToCombine.size() == 0) {
-		return 0.0;
+	if (valuesToCombine.empty()) {
+		throw std::runtime_error("Nothing to combine! The supplied vector is empty.");
 	}
 
 	constexpr size_t POSITIVE_HYPOTHESIS = 0xAA;
