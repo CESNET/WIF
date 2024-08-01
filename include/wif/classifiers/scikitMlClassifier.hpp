@@ -50,9 +50,14 @@ public:
 
 	/**
 	 * @brief Classify single flowFeature object
+	 * Source fields of flowFeatures objects must hold a value of type double
+	 * Fields are passed to the ML model in the order of passed source feature IDs
+	 *
+	 * ClfResult contains std::vector<double> representing output of predict_proba() call
+	 * with probabilities of each class
 	 *
 	 * @param flowFeatures
-	 * @return double
+	 * @return ClfResult
 	 */
 	ClfResult classify(const FlowFeatures& flowFeatures) override;
 
@@ -60,7 +65,7 @@ public:
 	 * @brief Classify a burst of flow features
 	 *
 	 * @param burstOfFlowsFeatures
-	 * @return std::vector<double>
+	 * @return std::vector<ClfResult>
 	 */
 	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 

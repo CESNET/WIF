@@ -48,8 +48,10 @@ public:
 
 	/**
 	 * @brief Classify single flowFeature object
-	 * ClfResult contains non-zero double value if flowFeatures contained a field with IP from
-	 * blocklist, otherwise the double value is set to zero
+	 * Source fields of flowFeatures objects must hold a value of type WIF::IpAddress
+	 *
+	 * ClfResult contains a single non-zero double value if flowFeatures contained a field with IP
+	 * from blocklist, otherwise the double value is set to zero
 	 *
 	 * @param flowFeatures flow features to classify
 	 * @return ClfResult result of the classification

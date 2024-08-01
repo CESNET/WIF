@@ -31,7 +31,7 @@ public:
 	 * together and the resulting probability of the positive hypothesis is returned.
 	 *
 	 * @param valuesToCombine vector of doubles to combine
-	 * @return double DST combination of input values
+	 * @return double belief of the positive hypothesis after DST combination
 	 */
 	double combine(const std::vector<double>& valuesToCombine) override;
 };
