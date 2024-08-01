@@ -14,16 +14,12 @@ set(DSTLIB_PACKAGE_BUILDER OFF)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-if(DEFINED ENV{DSTLIB_CI_TOKEN})
-	set(GIT_REPO https://$ENV{DSTLIB_CI_TOKEN}@gitlab.liberouter.org/feta/wif-group/dst.git)
-else()
-	set(GIT_REPO git@gitlab.liberouter.org:feta/wif-group/dst.git)
-endif()
+set(GIT_REPO https://github.com/AjayOommen/LIBDST.git)
 
 FetchContent_Declare(
 	dstlib
 	GIT_REPOSITORY ${GIT_REPO}
-	GIT_TAG "v1.0.2"
+	GIT_TAG "main"
 	GIT_SHALLOW 1
 )
 
