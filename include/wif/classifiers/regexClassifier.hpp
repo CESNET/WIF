@@ -36,9 +36,14 @@ public:
 
 	/**
 	 * @brief Classify single flowFeature object
+	 * Source fields of flowFeatures objects must hold a value of type std::string
+	 * If more source fields is set, the sub-results are combined together by a Combinator obtained
+	 * in the constructor
+	 *
+	 * ClfResult contains a single double value obtained from the combinator
 	 *
 	 * @param flowFeatures
-	 * @return double
+	 * @return ClfResult
 	 */
 	ClfResult classify(const FlowFeatures& flowFeatures) override;
 
@@ -46,7 +51,7 @@ public:
 	 * @brief Classify a burst of flow features
 	 *
 	 * @param burstOfFlowsFeatures
-	 * @return std::vector<double>
+	 * @return std::vector<ClfResult>
 	 */
 	std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowsFeatures) override;
 

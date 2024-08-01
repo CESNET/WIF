@@ -40,9 +40,10 @@ public:
 
 	/**
 	 * @brief Perform classification of one flow
+	 * Only flowFeatures fields set by setFeatureSourceIDs() are processed
 	 *
 	 * @param flowFeatures flow features to classify
-	 * @return double classification result
+	 * @return ClfResult classification result
 	 */
 	virtual ClfResult classify(const FlowFeatures& flowFeatures) = 0;
 
@@ -50,7 +51,7 @@ public:
 	 * @brief Perform classification of burst of flows
 	 *
 	 * @param burstOfFlowFeatures burst of flow features to classify
-	 * @return std::vector<double> classification results
+	 * @return std::vector<ClfResult> classification results
 	 */
 	virtual std::vector<ClfResult> classify(const std::vector<FlowFeatures>& burstOfFlowFeatures)
 		= 0;
