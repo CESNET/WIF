@@ -10,11 +10,16 @@
 #include "wif/combinators/sumCombinator.hpp"
 
 #include <numeric>
+#include <stdexcept>
 
 namespace WIF {
 
 double SumCombinator::combine(const std::vector<double>& valuesToCombine)
 {
+	if (valuesToCombine.empty()) {
+		throw std::runtime_error("Nothing to combine! The supplied vector is empty.");
+	}
+
 	return std::accumulate(valuesToCombine.begin(), valuesToCombine.end(), 0.0);
 }
 
