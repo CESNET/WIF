@@ -1,6 +1,6 @@
 /**
  * @file
- * @author Richard Plny <plnyrich@fit.cvut.cz>
+ * @author Richard Plny <richard.plny@cesnet.cz>
  * @brief IP prefix interface
  * Based on:
  * https://github.com/CESNET/nemea-modules-ng/blob/main/modules/whitelist/src/ipAddressPrefix.hpp

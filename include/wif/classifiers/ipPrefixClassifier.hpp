@@ -1,6 +1,6 @@
 /**
  * @file
- * @author Richard Plny <plnyrich@fit.cvut.cz>
+ * @author Richard Plny <richard.plny@cesnet.cz>
  * @brief IP prefix classifier interface
  *
  * SPDX-License-Identifier: BSD-3-Clause

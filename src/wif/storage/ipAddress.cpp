@@ -1,6 +1,6 @@
 /**
  * @file
- * @author Richard Plny <plnyrich@fit.cvut.cz>
+ * @author Richard Plny <richard.plny@cesnet.cz>
  * @brief IP address implementation
  * Based on the https://nemea.liberouter.org/doc/unirec/ipaddr_8h_source.html
  *
