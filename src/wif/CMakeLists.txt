@@ -3,11 +3,20 @@ set(LIBWIF_SOURCES
 	classifiers/ipPrefixClassifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitMlClassifier.cpp
+	classifiers/mlpackClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/majorityCombinator.cpp
 	combinators/sumCombinator.cpp
 	filesystem/fileModificationChecker.cpp
+	ml/mlpackModels/decisionTreeModel.cpp
+	ml/mlpackModels/hoeffdingTreeModel.cpp
+	ml/mlpackModels/linearSVMModel.cpp
+	ml/mlpackModels/mlpackModel.cpp
+	ml/mlpackModels/naiveBayesModel.cpp
+	ml/mlpackModels/perceptronModel.cpp
+	ml/mlpackModels/randomForestModel.cpp
+	ml/mlpackWrapper.cpp
 	ml/scikitMlWrapper.cpp
 	regex/regexPattern.cpp
 	storage/flowFeatures.cpp
@@ -16,10 +25,13 @@ set(LIBWIF_SOURCES
 )
 
 set(LIBWIF_LIBS
+	armadillo
 	Boost::regex
+	Boost::serialization
+	dstlib::dst
+	OpenMP::OpenMP_CXX
 	Python3::Python
 	Python3::NumPy
-	dstlib::dst
 )
 
 if(BUILD_WITH_UNIREC)
