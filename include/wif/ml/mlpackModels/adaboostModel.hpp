@@ -154,7 +154,7 @@ public:
 			numClasses,
 			maxIterations,
 			tolerance,
-			std::forward<weakLearnerParams>(weakLearnerParams)...);
+			std::forward<WeakLearnerParams>(weakLearnerParams)...);
 
 		this->save(path);
 	}
