@@ -83,13 +83,26 @@ public:
 	 * @param numClasses contains number of classes in the dataset.
 	 * @param batchTraining - if true, a batch training algorithm is used, instead of the usual
 	 * incremental algorithm. This is generally more efficient for larger datasets.
+	 * @param successProbability contains probability of success required for Hoeffding bound before
+	 * a node split can happen.
+	 * @param maxSamples contains maximum number of samples before a node split is forced. 0 means
+	 * no limit.
+	 * @param checkInterval contains number of samples required before each split check. Higher
+	 * values check less often, which is more efficient, but may not split a node as early as
+	 * possible.
+	 * @param minSamples contains minimum number of samples for a node to see before a split is
+	 * allowed.
 	 */
 	void train(
 		std::vector<FlowFeatures>& data,
 		std::vector<size_t>& labels,
 		const std::string& path,
 		size_t numClasses = 2,
-		bool batchTraining = true);
+		bool batchTraining = true,
+		double successProbability = 0.95,
+		size_t maxSamples = 0,
+		size_t checkInterval = 100,
+		size_t minSamples = 100);
 
 private:
 	/**

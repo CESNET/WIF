@@ -60,13 +60,25 @@ void HoeffdingTreeModel::train(
 	std::vector<size_t>& labels,
 	const std::string& path,
 	size_t numClasses,
-	bool batchTraining)
+	bool batchTraining,
+	double successProbability,
+	size_t maxSamples,
+	size_t checkInterval,
+	size_t minSamples)
 {
 	arma::mat dataset(m_featureIDs.size(), data.size());
 	arma::Row<size_t> armaLabels(labels);
 
 	MlpackModel::convertBurstOfFeaturesToMatrix(data, dataset);
-	m_ht.Train(dataset, armaLabels, numClasses, batchTraining, false);
+	m_ht.Train(
+		dataset,
+		armaLabels,
+		numClasses,
+		batchTraining,
+		successProbability,
+		maxSamples,
+		checkInterval,
+		minSamples);
 
 	this->save(path);
 }

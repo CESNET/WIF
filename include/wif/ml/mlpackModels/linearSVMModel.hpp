@@ -84,6 +84,9 @@ public:
 	 * length data.length().
 	 * @param path contains path, where file will be saved.
 	 * @param numClasses contains number of classes in the dataset.
+	 * @param lambda contains L2 regularization penalty parameter. Must be nonnegative.
+	 * @param delta contains margin of difference between correct class and other classes.
+	 * @param fitIntercept is true, if an intercept term is fitted to the model.
 	 * @param callbacks contains optional callbacks for the ensmallen optimizer, such as e.g.
 	 * ens::ProgressBar(), ens::Report(), or others.
 	 */
@@ -93,13 +96,23 @@ public:
 		std::vector<size_t>& labels,
 		const std::string& path,
 		size_t numClasses = 2,
+		double lambda = 0.0001,
+		double delta = 1.0,
+		bool fitIntercept = false,
 		CallbackTypes&&... callbacks)
 	{
 		arma::mat dataset(m_featureIDs.size(), data.size());
 		arma::Row<size_t> armaLabels(labels);
 
 		MlpackModel::convertBurstOfFeaturesToMatrix(data, dataset);
-		m_svm.Train(dataset, armaLabels, numClasses, std::forward<CallbackTypes>(callbacks)...);
+		m_svm.Train(
+			dataset,
+			armaLabels,
+			numClasses,
+			lambda,
+			delta,
+			fitIntercept,
+			std::forward<CallbackTypes>(callbacks)...);
 
 		this->save(path);
 	}
@@ -114,6 +127,9 @@ public:
 	 * @param numClasses contains number of classes in the dataset.
 	 * @param optimizer contains instantiated ensmallen optimizer for differentiable functions or
 	 * differentiable separable functions.
+	 * @param lambda contains L2 regularization penalty parameter. Must be nonnegative.
+	 * @param delta contains margin of difference between correct class and other classes.
+	 * @param fitIntercept is true, if an intercept term is fitted to the model.
 	 * @param callbacks contains optional callbacks for the ensmallen optimizer, such as e.g.
 	 * ens::ProgressBar(), ens::Report(), or others.
 	 */
@@ -124,6 +140,9 @@ public:
 		const std::string& path,
 		size_t numClasses,
 		OptimizerType& optimizer,
+		double lambda = 0.0001,
+		double delta = 1.0,
+		bool fitIntercept = false,
 		CallbackTypes&&... callbacks)
 	{
 		arma::mat dataset(m_featureIDs.size(), data.size());
@@ -135,6 +154,9 @@ public:
 			armaLabels,
 			numClasses,
 			optimizer,
+			lambda,
+			delta,
+			fitIntercept,
 			std::forward<CallbackTypes>(callbacks)...);
 
 		this->save(path);
