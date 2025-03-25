@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 PerceptronModel::PerceptronModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_p, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult PerceptronModel::classify(const FlowFeatures& flowFeatures)
@@ -46,6 +49,9 @@ std::vector<ClfResult> PerceptronModel::classify(const std::vector<FlowFeatures>
 bool PerceptronModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_p);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 

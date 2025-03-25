@@ -40,6 +40,9 @@ public:
 	AdaBoostModel(const std::string& modelPath)
 	{
 		m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ab, true);
+		if (m_loaded) {
+			m_modelPath = modelPath;
+		}
 	}
 
 	/**
@@ -105,6 +108,9 @@ public:
 	bool load(const std::string& modelPath) override
 	{
 		m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ab);
+		if (m_loaded) {
+			m_modelPath = modelPath;
+		}
 		return m_loaded;
 	}
 

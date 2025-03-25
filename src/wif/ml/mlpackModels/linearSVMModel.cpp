@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 LinearSVMModel::LinearSVMModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_svm, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult LinearSVMModel::classify(const FlowFeatures& flowFeatures)
@@ -49,6 +52,9 @@ std::vector<ClfResult> LinearSVMModel::classify(const std::vector<FlowFeatures>&
 bool LinearSVMModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_svm);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 

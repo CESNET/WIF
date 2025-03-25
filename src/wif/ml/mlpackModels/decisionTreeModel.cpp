@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 DecisionTreeModel::DecisionTreeModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_dt, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult DecisionTreeModel::classify(const FlowFeatures& flowFeatures)
@@ -49,6 +52,9 @@ std::vector<ClfResult> DecisionTreeModel::classify(const std::vector<FlowFeature
 bool DecisionTreeModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_dt);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 

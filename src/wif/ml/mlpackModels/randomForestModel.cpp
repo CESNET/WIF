@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 RandomForestModel::RandomForestModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_rf, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult RandomForestModel::classify(const FlowFeatures& flowFeatures)
@@ -50,6 +53,9 @@ std::vector<ClfResult> RandomForestModel::classify(const std::vector<FlowFeature
 bool RandomForestModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_rf);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 

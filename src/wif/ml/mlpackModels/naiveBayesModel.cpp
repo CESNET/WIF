@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 NaiveBayesModel::NaiveBayesModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_nbc, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult NaiveBayesModel::classify(const FlowFeatures& flowFeatures)
@@ -49,6 +52,9 @@ std::vector<ClfResult> NaiveBayesModel::classify(const std::vector<FlowFeatures>
 bool NaiveBayesModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_nbc);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 

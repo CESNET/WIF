@@ -13,6 +13,9 @@ namespace WIF::MlpackModels {
 HoeffdingTreeModel::HoeffdingTreeModel(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ht, true);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 }
 
 ClfResult HoeffdingTreeModel::classify(const FlowFeatures& flowFeatures)
@@ -47,6 +50,9 @@ HoeffdingTreeModel::classify(const std::vector<FlowFeatures>& burstOfFeatures)
 bool HoeffdingTreeModel::load(const std::string& modelPath)
 {
 	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ht);
+	if (m_loaded) {
+		m_modelPath = modelPath;
+	}
 	return m_loaded;
 }
 
