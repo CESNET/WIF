@@ -83,8 +83,8 @@ public:
 	 * @param numClasses contains number of classes in the dataset.
 	 */
 	void train(
-		std::vector<FlowFeatures>& data,
-		std::vector<size_t>& labels,
+		const std::vector<FlowFeatures>& data,
+		const std::vector<size_t>& labels,
 		const std::string& path,
 		size_t numClasses = 2,
 		size_t maxIterations = 1000);
@@ -100,8 +100,8 @@ public:
 	 * @param numClasses contains number of classes in the dataset.
 	 */
 	void train(
-		std::vector<FlowFeatures>& data,
-		std::vector<size_t>& labels,
+		const std::vector<FlowFeatures>& data,
+		const std::vector<size_t>& labels,
 		const std::string& path,
 		const arma::rowvec& weights,
 		size_t numClasses = 2,

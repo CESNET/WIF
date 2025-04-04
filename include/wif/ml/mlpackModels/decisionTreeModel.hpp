@@ -88,8 +88,8 @@ public:
 	 * @param maxDepth contains maximum depth for the tree. (0 means no limit.)
 	 */
 	void train(
-		std::vector<FlowFeatures>& data,
-		std::vector<size_t>& labels,
+		const std::vector<FlowFeatures>& data,
+		const std::vector<size_t>& labels,
 		const std::string& path,
 		size_t numClasses = 2,
 		size_t minLeafSize = 10,

@@ -91,8 +91,8 @@ public:
 	 * entirely new random forest will be created.
 	 */
 	void train(
-		std::vector<FlowFeatures>& data,
-		std::vector<size_t>& labels,
+		const std::vector<FlowFeatures>& data,
+		const std::vector<size_t>& labels,
 		const std::string& path,
 		size_t numClasses = 2,
 		size_t numTrees = 20,

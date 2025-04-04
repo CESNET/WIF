@@ -61,8 +61,8 @@ bool PerceptronModel::save(const std::string& modelPath) const
 }
 
 void PerceptronModel::train(
-	std::vector<FlowFeatures>& data,
-	std::vector<size_t>& labels,
+	const std::vector<FlowFeatures>& data,
+	const std::vector<size_t>& labels,
 	const std::string& path,
 	size_t numClasses,
 	size_t maxIterations)
@@ -77,8 +77,8 @@ void PerceptronModel::train(
 }
 
 void PerceptronModel::train(
-	std::vector<FlowFeatures>& data,
-	std::vector<size_t>& labels,
+	const std::vector<FlowFeatures>& data,
+	const std::vector<size_t>& labels,
 	const std::string& path,
 	const arma::rowvec& weights,
 	size_t numClasses,
