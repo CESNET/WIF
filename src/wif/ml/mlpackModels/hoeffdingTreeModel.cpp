@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-HoeffdingTreeModel::HoeffdingTreeModel(const std::string& modelPath)
+HoeffdingTreeModel::HoeffdingTreeModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ht, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_ht, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -47,18 +47,18 @@ HoeffdingTreeModel::classify(const std::vector<FlowFeatures>& burstOfFeatures)
 	return burstResults;
 }
 
-bool HoeffdingTreeModel::load(const std::string& modelPath)
+bool HoeffdingTreeModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ht);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_ht);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool HoeffdingTreeModel::save(const std::string& modelPath) const
+bool HoeffdingTreeModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_ht);
+	return mlpack::data::Save(modelPath, logicalName, m_ht);
 }
 
 void HoeffdingTreeModel::train(

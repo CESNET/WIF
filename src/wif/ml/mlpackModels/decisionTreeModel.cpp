@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-DecisionTreeModel::DecisionTreeModel(const std::string& modelPath)
+DecisionTreeModel::DecisionTreeModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_dt, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_dt, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -49,18 +49,18 @@ std::vector<ClfResult> DecisionTreeModel::classify(const std::vector<FlowFeature
 	return burstResults;
 }
 
-bool DecisionTreeModel::load(const std::string& modelPath)
+bool DecisionTreeModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_dt);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_dt);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool DecisionTreeModel::save(const std::string& modelPath) const
+bool DecisionTreeModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_dt);
+	return mlpack::data::Save(modelPath, logicalName, m_dt);
 }
 
 void DecisionTreeModel::train(

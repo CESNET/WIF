@@ -10,9 +10,9 @@
 
 namespace WIF {
 
-MlpackClassifier::MlpackClassifier(const std::string& path)
+MlpackClassifier::MlpackClassifier(const std::string& path, const std::string& logicalName)
 {
-	m_mlpackWrapper = std::make_unique<MlpackWrapper>(path);
+	m_mlpackWrapper = std::make_unique<MlpackWrapper>(path, logicalName);
 }
 
 void MlpackClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
@@ -36,9 +36,9 @@ const std::string MlpackClassifier::getMlModelPath() const noexcept
 	return m_mlpackWrapper->getModelPath();
 }
 
-void MlpackClassifier::reloadModelFromDisk()
+void MlpackClassifier::reloadModelFromDisk(const std::string& logicalName)
 {
-	m_mlpackWrapper->loadModel(m_mlpackWrapper->getModelPath());
+	m_mlpackWrapper->loadModel(m_mlpackWrapper->getModelPath(), logicalName);
 }
 
 } // namespace WIF

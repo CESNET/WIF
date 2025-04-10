@@ -45,8 +45,9 @@ public:
 	 * @brief Construct a new Mlpack wrapper object
 	 *
 	 * @param modelPath contains path to the model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	MlpackWrapper(const std::string& modelPath);
+	MlpackWrapper(const std::string& modelPath, const std::string& logicalName = "trained_data");
 
 	/**
 	 * @brief Set feature IDs which will be used for classification
@@ -65,9 +66,10 @@ public:
 	 * @brief Load the model from the file
 	 *
 	 * @param modelPath contains path to the model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return bool true, if model was succesfully loaded. False if not.
 	 */
-	bool loadModel(const std::string& modelPath);
+	bool loadModel(const std::string& modelPath, const std::string& logicalName = "trained_data");
 
 	/**
 	 * @brief Classify single flowFeature object

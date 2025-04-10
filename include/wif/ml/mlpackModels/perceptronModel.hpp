@@ -37,8 +37,9 @@ public:
 	 * @brief Construct a new Perceptron object
 	 *
 	 * @param modelPath contains path to trained model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	PerceptronModel(const std::string& modelPath);
+	PerceptronModel(const std::string& modelPath, const std::string& logicalName = "trained_data");
 
 	/**
 	 * @brief Classify single flowFeature object
@@ -61,17 +62,21 @@ public:
 	 * @brief Load Perceptron model from file
 	 *
 	 * @param modelPath contains path to trained model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully loaded. False if not.
 	 */
-	bool load(const std::string& modelPath) override;
+	bool
+	load(const std::string& modelPath, const std::string& logicalName = "trained_data") override;
 
 	/**
 	 * @brief Save Perceptron model to file
 	 *
 	 * @param modelPath contains path, where the model will be saved.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully saved. False if not.
 	 */
-	bool save(const std::string& modelPath) const override;
+	bool save(const std::string& modelPath, const std::string& logicalName = "trained_data")
+		const override;
 
 	/**
 	 * @brief Train Perceptron model

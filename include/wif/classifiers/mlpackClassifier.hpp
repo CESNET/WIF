@@ -27,8 +27,9 @@ public:
 	 * @brief Construct a new Mlpack Classifier object
 	 *
 	 * @param path contains the path to the file with the trained model.
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	MlpackClassifier(const std::string& path);
+	MlpackClassifier(const std::string& path, const std::string& logicalName = "trained_data");
 
 	/**
 	 * @brief Set feature IDs which will be used for classification
@@ -64,8 +65,10 @@ public:
 
 	/**
 	 * @brief Reload the model from file, which was set in the constructor
+	 *
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	void reloadModelFromDisk();
+	void reloadModelFromDisk(const std::string& logicalName = "trained_data");
 
 private:
 	/**

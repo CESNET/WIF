@@ -37,8 +37,11 @@ public:
 	 * @brief Construct a new Random forest object
 	 *
 	 * @param modelPath contains path to trained model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	RandomForestModel(const std::string& modelPath);
+	RandomForestModel(
+		const std::string& modelPath,
+		const std::string& logicalName = "trained_data");
 
 	/**
 	 * @brief Classify single flowFeature object
@@ -63,17 +66,21 @@ public:
 	 * @brief Load Random forest model from file
 	 *
 	 * @param modelPath contains path to trained model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully loaded. False if not.
 	 */
-	bool load(const std::string& modelPath) override;
+	bool
+	load(const std::string& modelPath, const std::string& logicalName = "trained_data") override;
 
 	/**
 	 * @brief Save Random forest model to file
 	 *
 	 * @param modelPath contains path, where the model will be saved.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully saved. False if not.
 	 */
-	bool save(const std::string& modelPath) const override;
+	bool save(const std::string& modelPath, const std::string& logicalName = "trained_data")
+		const override;
 
 	/**
 	 * @brief Train Random forest model

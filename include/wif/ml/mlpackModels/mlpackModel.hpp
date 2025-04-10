@@ -57,17 +57,22 @@ public:
 	 * @brief Load Mlpack model from file
 	 *
 	 * @param modelPath contains path to model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully loaded. False if not.
 	 */
-	virtual bool load(const std::string& modelPath) = 0;
+	virtual bool load(const std::string& modelPath, const std::string& logicalName = "trained_data")
+		= 0;
 
 	/**
 	 * @brief Save Mlpack model to file
 	 *
 	 * @param modelPath contains path, where the model will be saved.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully saved. False if not.
 	 */
-	virtual bool save(const std::string& modelPath) const = 0;
+	virtual bool
+	save(const std::string& modelPath, const std::string& logicalName = "trained_data") const
+		= 0;
 
 	/**
 	 * @brief Return information about if ML model is loaded or not

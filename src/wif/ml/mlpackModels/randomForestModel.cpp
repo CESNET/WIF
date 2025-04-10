@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-RandomForestModel::RandomForestModel(const std::string& modelPath)
+RandomForestModel::RandomForestModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_rf, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_rf, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -50,18 +50,18 @@ std::vector<ClfResult> RandomForestModel::classify(const std::vector<FlowFeature
 	return burstResults;
 }
 
-bool RandomForestModel::load(const std::string& modelPath)
+bool RandomForestModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_rf);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_rf);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool RandomForestModel::save(const std::string& modelPath) const
+bool RandomForestModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_rf);
+	return mlpack::data::Save(modelPath, logicalName, m_rf);
 }
 
 void RandomForestModel::train(

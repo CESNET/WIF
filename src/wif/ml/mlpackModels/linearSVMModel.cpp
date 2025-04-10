@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-LinearSVMModel::LinearSVMModel(const std::string& modelPath)
+LinearSVMModel::LinearSVMModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_svm, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_svm, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -49,18 +49,18 @@ std::vector<ClfResult> LinearSVMModel::classify(const std::vector<FlowFeatures>&
 	return burstResults;
 }
 
-bool LinearSVMModel::load(const std::string& modelPath)
+bool LinearSVMModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_svm);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_svm);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool LinearSVMModel::save(const std::string& modelPath) const
+bool LinearSVMModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_svm);
+	return mlpack::data::Save(modelPath, logicalName, m_svm);
 }
 
 } // namespace WIF::MlpackModels

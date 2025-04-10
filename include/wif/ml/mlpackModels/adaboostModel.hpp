@@ -36,10 +36,11 @@ public:
 	 * @brief Construct a new AdaBoost wrapper object
 	 *
 	 * @param modelPath contains path to trained model file
+	 * @param logicalName contains the logical name of the trained model.
 	 */
-	AdaBoostModel(const std::string& modelPath)
+	AdaBoostModel(const std::string& modelPath, const std::string& logicalName = "trained_data")
 	{
-		m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ab, true);
+		m_loaded = mlpack::data::Load(modelPath, logicalName, m_ab, true);
 		if (m_loaded) {
 			m_modelPath = modelPath;
 		}
@@ -103,11 +104,13 @@ public:
 	 * @brief Load AdaBoost model from file
 	 *
 	 * @param modelPath contains path to the model file.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully loaded. False if not.
 	 */
-	bool load(const std::string& modelPath) override
+	bool
+	load(const std::string& modelPath, const std::string& logicalName = "trained_data") override
 	{
-		m_loaded = mlpack::data::Load(modelPath, "trained_data", m_ab);
+		m_loaded = mlpack::data::Load(modelPath, logicalName, m_ab);
 		if (m_loaded) {
 			m_modelPath = modelPath;
 		}
@@ -118,11 +121,13 @@ public:
 	 * @brief Save AdaBoost model to file
 	 *
 	 * @param modelPath contains file path, where the model will be saved.
+	 * @param logicalName contains the logical name of the trained model.
 	 * @return Bool value true, if model was successfully saved. False if not.
 	 */
-	bool save(const std::string& modelPath) const override
+	bool save(const std::string& modelPath, const std::string& logicalName = "trained_data")
+		const override
 	{
-		return mlpack::data::Save(modelPath, "trained_data", m_ab);
+		return mlpack::data::Save(modelPath, logicalName, m_ab);
 	}
 
 	/**

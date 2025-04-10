@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-NaiveBayesModel::NaiveBayesModel(const std::string& modelPath)
+NaiveBayesModel::NaiveBayesModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_nbc, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_nbc, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -49,18 +49,18 @@ std::vector<ClfResult> NaiveBayesModel::classify(const std::vector<FlowFeatures>
 	return burstResults;
 }
 
-bool NaiveBayesModel::load(const std::string& modelPath)
+bool NaiveBayesModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_nbc);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_nbc);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool NaiveBayesModel::save(const std::string& modelPath) const
+bool NaiveBayesModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_nbc);
+	return mlpack::data::Save(modelPath, logicalName, m_nbc);
 }
 
 void NaiveBayesModel::train(

@@ -10,9 +10,9 @@
 
 namespace WIF::MlpackModels {
 
-PerceptronModel::PerceptronModel(const std::string& modelPath)
+PerceptronModel::PerceptronModel(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_p, true);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_p, true);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
@@ -46,18 +46,18 @@ std::vector<ClfResult> PerceptronModel::classify(const std::vector<FlowFeatures>
 	return burstResults;
 }
 
-bool PerceptronModel::load(const std::string& modelPath)
+bool PerceptronModel::load(const std::string& modelPath, const std::string& logicalName)
 {
-	m_loaded = mlpack::data::Load(modelPath, "trained_data", m_p);
+	m_loaded = mlpack::data::Load(modelPath, logicalName, m_p);
 	if (m_loaded) {
 		m_modelPath = modelPath;
 	}
 	return m_loaded;
 }
 
-bool PerceptronModel::save(const std::string& modelPath) const
+bool PerceptronModel::save(const std::string& modelPath, const std::string& logicalName) const
 {
-	return mlpack::data::Save(modelPath, "trained_data", m_p);
+	return mlpack::data::Save(modelPath, logicalName, m_p);
 }
 
 void PerceptronModel::train(

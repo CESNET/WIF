@@ -10,10 +10,10 @@
 
 namespace WIF {
 
-MlpackWrapper::MlpackWrapper(const std::string& modelPath)
+MlpackWrapper::MlpackWrapper(const std::string& modelPath, const std::string& logicalName)
 {
 	initPrefixes();
-	loadModel(modelPath);
+	loadModel(modelPath, logicalName);
 }
 
 void MlpackWrapper::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
@@ -32,7 +32,7 @@ const std::string MlpackWrapper::getModelPath() const
 	return m_model->getPath();
 }
 
-bool MlpackWrapper::loadModel(const std::string& modelPath)
+bool MlpackWrapper::loadModel(const std::string& modelPath, const std::string& logicalName)
 {
 	std::string model;
 
@@ -43,23 +43,25 @@ bool MlpackWrapper::loadModel(const std::string& modelPath)
 	}
 
 	if (model == "NaiveBayesClassifier") {
-		m_model = std::make_unique<WIF::MlpackModels::NaiveBayesModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::NaiveBayesModel>(modelPath, logicalName);
 	} else if (model == "DecisionTree") {
-		m_model = std::make_unique<WIF::MlpackModels::DecisionTreeModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::DecisionTreeModel>(modelPath, logicalName);
 	} else if (model == "RandomForest") {
-		m_model = std::make_unique<WIF::MlpackModels::RandomForestModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::RandomForestModel>(modelPath, logicalName);
 	} else if (model == "LinearSVM") {
-		m_model = std::make_unique<WIF::MlpackModels::LinearSVMModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::LinearSVMModel>(modelPath, logicalName);
 	} else if (model == "Perceptron") {
-		m_model = std::make_unique<WIF::MlpackModels::PerceptronModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::PerceptronModel>(modelPath, logicalName);
 	} else if (model == "HoeffdingTree") {
-		m_model = std::make_unique<WIF::MlpackModels::HoeffdingTreeModel>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::HoeffdingTreeModel>(modelPath, logicalName);
 	} else if (model == "Adaboost") {
-		m_model
-			= std::make_unique<WIF::MlpackModels::AdaBoostModel<mlpack::Perceptron<>>>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::AdaBoostModel<mlpack::Perceptron<>>>(
+			modelPath,
+			logicalName);
 	} else if (model == "Adaboost-DecisionTree") {
-		m_model
-			= std::make_unique<WIF::MlpackModels::AdaBoostModel<mlpack::DecisionTree<>>>(modelPath);
+		m_model = std::make_unique<WIF::MlpackModels::AdaBoostModel<mlpack::DecisionTree<>>>(
+			modelPath,
+			logicalName);
 	} else {
 		return false;
 	}
