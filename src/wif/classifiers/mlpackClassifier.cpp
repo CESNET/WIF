@@ -17,6 +17,7 @@ MlpackClassifier::MlpackClassifier(const std::string& path, const std::string& l
 
 void MlpackClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeatureIDs)
 {
+	Classifier::setFeatureSourceIDs(sourceFeatureIDs);
 	m_mlpackWrapper->setFeatureSourceIDs(sourceFeatureIDs);
 }
 
