@@ -85,7 +85,7 @@ public:
 	 * @brief Getter for path of the used ML model
 	 * @return const std::string&
 	 */
-	std::string getPath() const;
+	const std::string& getPath() const;
 
 	/**
 	 * @brief Set feature IDs which will be used for classification

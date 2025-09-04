@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "wif/classifiers/classifier.hpp"
+#include "wif/classifiers/genericMlClassifier.hpp"
 #include "wif/ml/mlpackWrapper.hpp"
 
 #include <memory>
@@ -21,7 +21,7 @@ namespace WIF {
  * @brief Classifier performing ML classification which is interconnected with Mlpack library
  *
  */
-class MlpackClassifier : public Classifier {
+class MlpackClassifier : public GenericMlClassifier {
 public:
 	/**
 	 * @brief Construct a new Mlpack Classifier object
@@ -59,22 +59,36 @@ public:
 
 	/**
 	 * @brief Return the path of the ML model, which is currently loaded
-	 * @return const std::string& path of the model.
+	 * @return const std::string& path of the model
 	 */
-	const std::string getMlModelPath() const noexcept;
+	const std::string& getMlModelPath() const noexcept override;
+<<<<<<< HEAD
+
+	/**
+	 * @brief Reload the model from file, which was set in the constructor
+	 */
+	void reloadModelFromDisk() override;
+=======
+>>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 
 	/**
 	 * @brief Reload the model from file, which was set in the constructor
 	 *
-	 * @param logicalName contains the logical name of the trained model.
+	 * @param logicalName contains the logical name of the trained model
 	 */
-	void reloadModelFromDisk(const std::string& logicalName = "trained_data");
+<<<<<<< HEAD
+	void reloadModelFromDisk(const std::string& logicalName);
+=======
+	void reloadModelFromDisk(const std::string& logicalName = "trained_data") override;
+>>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 
 private:
 	/**
 	 * @brief Pointer to wrapper object with loaded mlpack model
 	 */
 	std::unique_ptr<MlpackWrapper> m_mlpackWrapper;
+
+	mutable std::string m_modelPath;
 };
 
 } // namespace WIF

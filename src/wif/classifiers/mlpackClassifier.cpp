@@ -32,9 +32,15 @@ MlpackClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowFeatures)
 	return m_mlpackWrapper->classify(burstOfFlowFeatures);
 }
 
-const std::string MlpackClassifier::getMlModelPath() const noexcept
+const std::string& MlpackClassifier::getMlModelPath() const noexcept
 {
-	return m_mlpackWrapper->getModelPath();
+	m_modelPath = m_mlpackWrapper->getModelPath();
+	return m_modelPath;
+}
+
+void MlpackClassifier::reloadModelFromDisk()
+{
+	m_mlpackWrapper->loadModel(m_mlpackWrapper->getModelPath(), "trained_data");
 }
 
 void MlpackClassifier::reloadModelFromDisk(const std::string& logicalName)
