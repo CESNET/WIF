@@ -25,14 +25,14 @@ void AlfClassifier::AlfCallback::onTick()
 }
 
 AlfClassifier::AlfClassifier(
-	ScikitMlClassifier& mlClassifier,
+	GenericMlClassifier& mlClassifier,
 	UnirecReporter& reporter,
 	unsigned timerIntervalInSeconds)
 	: m_mlClassifier(mlClassifier)
 	, m_reporter(reporter)
 	, m_timer(
 		  timerIntervalInSeconds,
-		  std::make_unique<AlfCallback>(mlClassifier.getMlModelPath(), *this))
+		  std::make_unique<AlfCallback>(m_mlClassifier.getMlModelPath(), *this))
 {
 	updateLastModelLoadTime();
 	m_timer.start();

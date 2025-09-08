@@ -60,7 +60,7 @@ public:
 	 * @brief Getter for path of the used ML model
 	 * @return const std::string&
 	 */
-	const std::string getModelPath() const;
+	const std::string& getModelPath() const;
 
 	/**
 	 * @brief Load the model from the file

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "wif/classifiers/classifier.hpp"
+#include "wif/classifiers/genericMlClassifier.hpp"
 #include "wif/ml/mlpackWrapper.hpp"
 
 #include <memory>
@@ -21,13 +21,13 @@ namespace WIF {
  * @brief Classifier performing ML classification which is interconnected with Mlpack library
  *
  */
-class MlpackClassifier : public Classifier {
+class MlpackClassifier : public GenericMlClassifier {
 public:
 	/**
 	 * @brief Construct a new Mlpack Classifier object
 	 *
-	 * @param path contains the path to the file with the trained model.
-	 * @param logicalName contains the logical name of the trained model.
+	 * @param path contains the path to the file with the trained model
+	 * @param logicalName contains the logical name of the trained model
 	 */
 	MlpackClassifier(const std::string& path, const std::string& logicalName = "trained_data");
 
@@ -44,7 +44,7 @@ public:
 	 *
 	 * @param flowFeatures flow features to classify
 	 * @return ClfResult result of the classification, which contains double represention class or
-	 * vector<double> with probabilities for each class (depends on model).
+	 * vector<double> with probabilities for each class (depends on model)
 	 */
 	ClfResult classify(const FlowFeatures& flowFeatures) override;
 
@@ -59,16 +59,16 @@ public:
 
 	/**
 	 * @brief Return the path of the ML model, which is currently loaded
-	 * @return const std::string& path of the model.
+	 * @return const std::string& path of the model
 	 */
-	const std::string getMlModelPath() const noexcept;
+	const std::string& getMlModelPath() const noexcept override;
 
 	/**
 	 * @brief Reload the model from file, which was set in the constructor
 	 *
-	 * @param logicalName contains the logical name of the trained model.
+	 * @param logicalName contains the logical name of the trained model
 	 */
-	void reloadModelFromDisk(const std::string& logicalName = "trained_data");
+	void reloadModelFromDisk(const std::string& logicalName = "trained_data") override;
 
 private:
 	/**

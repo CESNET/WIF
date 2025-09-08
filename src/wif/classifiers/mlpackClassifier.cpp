@@ -32,7 +32,7 @@ MlpackClassifier::classify(const std::vector<FlowFeatures>& burstOfFlowFeatures)
 	return m_mlpackWrapper->classify(burstOfFlowFeatures);
 }
 
-const std::string MlpackClassifier::getMlModelPath() const noexcept
+const std::string& MlpackClassifier::getMlModelPath() const noexcept
 {
 	return m_mlpackWrapper->getModelPath();
 }
