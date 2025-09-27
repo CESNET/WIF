@@ -48,11 +48,7 @@ public:
 	 *
 	 * @param logicalName is unused
 	 */
-<<<<<<< HEAD
-	void reloadModelFromDisk() override;
-=======
 	void reloadModelFromDisk([[maybe_unused]] const std::string& logicalName) override;
->>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 
 	/**
 	 * @brief Classify single flowFeature object

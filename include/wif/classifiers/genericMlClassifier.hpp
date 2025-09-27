@@ -16,39 +16,25 @@
 namespace WIF {
 
 /**
-<<<<<<< HEAD
- * @brief Abstract class specifying interfaces for ML classifiers (scikitMlClassifier and
- * mlpackClassifier)
-=======
  * @brief Abstract class specifying interfaces for ML classifiers (ScikitMlClassifier and
  * MlpackClassifier)
->>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
  *
  */
 class GenericMlClassifier : public Classifier {
 public:
 	/**
 	 * @brief Return the path of the ML model, which is currently loaded
-<<<<<<< HEAD
-	 * @return const std::string& path of the model.
-=======
 	 * @return const std::string& path of the model
->>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 	 */
 	virtual const std::string& getMlModelPath() const noexcept = 0;
 
 	/**
 	 * @brief Reload the model from file, which was set in the constructor
-<<<<<<< HEAD
-	 */
-	virtual void reloadModelFromDisk() = 0;
-=======
 	 *
 	 * @param logicalName contains the logical name of the trained model. The parameter is used only
 	 * with MlpackClassifier (it is unused with ScikitMlClassifier)
 	 */
 	virtual void reloadModelFromDisk(const std::string& logicalName = "trained_data") = 0;
->>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 };
 
 } // namespace WIF

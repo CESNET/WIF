@@ -85,11 +85,7 @@ private:
 
 	bool m_modelReloadNeeded = false;
 	uint64_t m_lastModelLoadTime;
-<<<<<<< HEAD
-	GenericMlClassifier* m_mlClassifier;
-=======
 	GenericMlClassifier& m_mlClassifier;
->>>>>>> ec46815 (AlfClassifier - introduce support MlpackClassifier)
 	UnirecReporter& m_reporter;
 	Timer m_timer;
 };
