@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "wif/classifiers/scikitMlClassifier.hpp"
+#include "wif/classifiers/genericMlClassifier.hpp"
 #include "wif/filesystem/fileModificationChecker.hpp"
 #include "wif/reporters/unirecReporter.hpp"
 #include "wif/utils/timer.hpp"
@@ -47,7 +47,7 @@ public:
 	 * @param timerIntervalInSeconds number of seconds between each check of file on disk
 	 */
 	AlfClassifier(
-		ScikitMlClassifier& mlClassifier,
+		GenericMlClassifier& mlClassifier,
 		UnirecReporter& reporter,
 		unsigned timerIntervalInSeconds);
 
@@ -85,7 +85,7 @@ private:
 
 	bool m_modelReloadNeeded = false;
 	uint64_t m_lastModelLoadTime;
-	ScikitMlClassifier& m_mlClassifier;
+	GenericMlClassifier& m_mlClassifier;
 	UnirecReporter& m_reporter;
 	Timer m_timer;
 };

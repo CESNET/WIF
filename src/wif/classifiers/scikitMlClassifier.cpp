@@ -28,7 +28,7 @@ void ScikitMlClassifier::setFeatureSourceIDs(const std::vector<FeatureID>& sourc
 	m_scikitMlWrapper->setFeatureSourceIDs(sourceFeatureIDs);
 }
 
-void ScikitMlClassifier::reloadModelFromDisk()
+void ScikitMlClassifier::reloadModelFromDisk([[maybe_unused]] const std::string& logicalName)
 {
 	m_scikitMlWrapper->reloadModel();
 }
