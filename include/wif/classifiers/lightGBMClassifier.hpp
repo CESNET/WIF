@@ -1,7 +1,7 @@
 /**
  * @file
  * @author Jachym Hudlicky <hudlijac@fit.cvut.cz>
- * @brief Mlpack classifier interface
+ * @brief LightGBM classifier interface
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
@@ -9,27 +9,25 @@
 #pragma once
 
 #include "wif/classifiers/genericMlClassifier.hpp"
-#include "wif/ml/mlpackWrapper.hpp"
+#include "wif/ml/lightGBMWrapper.hpp"
 
 #include <memory>
 #include <string>
 #include <vector>
 
 namespace WIF {
-
 /**
- * @brief Classifier performing ML classification which is interconnected with Mlpack library
+ * @brief Classifier performing ML classification which is interconnected with LightGBM library
  *
  */
-class MlpackClassifier : public GenericMlClassifier {
+class LightGBMClassifier : public GenericMlClassifier {
 public:
 	/**
-	 * @brief Construct a new Mlpack Classifier object
+	 * @brief Construct a new LightGBM Classifier object
 	 *
 	 * @param path contains the path to the file with the trained model
-	 * @param logicalName contains the logical name of the trained model
 	 */
-	MlpackClassifier(const std::string& path, const std::string& logicalName = "trained_data");
+	LightGBMClassifier(const std::string& path);
 
 	/**
 	 * @brief Set feature IDs which will be used for classification
@@ -43,8 +41,8 @@ public:
 	 * See std::vector<ClfResult> classify(const std::vector<FlowFeatures>&) for more details
 	 *
 	 * @param flowFeatures flow features to classify
-	 * @return ClfResult result of the classification, which contains double represention class or
-	 * vector<double> with probabilities for each class (depends on model)
+	 * @return ClfResult result of the classification, which contains
+	 * vector<double> with probabilities for each class
 	 */
 	ClfResult classify(const FlowFeatures& flowFeatures) override;
 
@@ -64,17 +62,17 @@ public:
 	const std::string& getMlModelPath() const noexcept override;
 
 	/**
-	 * @brief Reload the model from file, which was set in the constructor
+	 * @brief Reload used ML model from disk
 	 *
-	 * @param logicalName contains the logical name of the trained model
+	 * @param logicalName is unused
 	 */
-	void reloadModelFromDisk(const std::string& logicalName = "trained_data") override;
+	void
+	reloadModelFromDisk([[maybe_unused]] const std::string& logicalName = "trained_data") override;
 
 private:
 	/**
-	 * @brief Pointer to wrapper object with loaded mlpack model
+	 * @brief Pointer to wrapper object with loaded lightGBM model
 	 */
-	std::unique_ptr<MlpackWrapper> m_mlpackWrapper;
+	std::unique_ptr<LightGBMWrapper> m_lightGBMWrapper;
 };
-
 } // namespace WIF
