@@ -24,6 +24,7 @@ class GenericMlClassifier : public Classifier {
 public:
 	/**
 	 * @brief Return the path of the ML model, which is currently loaded
+   *
 	 * @return const std::string& path of the model
 	 */
 	virtual const std::string& getMlModelPath() const noexcept = 0;

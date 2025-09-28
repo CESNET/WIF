@@ -75,6 +75,8 @@ private:
 	 * @brief Pointer to wrapper object with loaded mlpack model
 	 */
 	std::unique_ptr<MlpackWrapper> m_mlpackWrapper;
+
+	mutable std::string m_modelPath;
 };
 
 } // namespace WIF
