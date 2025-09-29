@@ -15,7 +15,7 @@ bool MlpackModel::isLoaded() const
 	return m_loaded;
 }
 
-std::string MlpackModel::getPath() const
+const std::string& MlpackModel::getPath() const
 {
 	return m_modelPath;
 }

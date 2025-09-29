@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "wif/classifiers/classifier.hpp"
+#include "wif/classifiers/genericMlClassifier.hpp"
 #include "wif/ml/scikitMlWrapper.hpp"
 
 #include <memory>
@@ -19,7 +19,7 @@ namespace WIF {
 /**
  * @brief Classifier performing Machine-Learning based detection via Scikit-learn library
  */
-class ScikitMlClassifier : public Classifier {
+class ScikitMlClassifier : public GenericMlClassifier {
 public:
 	/**
 	 * @brief Construct a new Scikitlearn Ml Classifier object
@@ -34,7 +34,7 @@ public:
 	 *
 	 * @return const std::string& the path to the used ML model
 	 */
-	const std::string& getMlModelPath() const noexcept;
+	const std::string& getMlModelPath() const noexcept override;
 
 	/**
 	 * @brief Set feature IDs which will be used for classification
@@ -45,8 +45,10 @@ public:
 
 	/**
 	 * @brief Reload used ML model from disk
+	 *
+	 * @param logicalName is unused
 	 */
-	void reloadModelFromDisk();
+	void reloadModelFromDisk([[maybe_unused]] const std::string& logicalName) override;
 
 	/**
 	 * @brief Classify single flowFeature object

@@ -27,7 +27,7 @@ void MlpackWrapper::setFeatureSourceIDs(const std::vector<FeatureID>& sourceFeat
 	}
 }
 
-const std::string MlpackWrapper::getModelPath() const
+const std::string& MlpackWrapper::getModelPath() const
 {
 	return m_model->getPath();
 }
