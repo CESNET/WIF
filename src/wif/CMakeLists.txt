@@ -1,14 +1,16 @@
 set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
 	classifiers/ipPrefixClassifier.cpp
+	classifiers/lightGBMClassifier.cpp
+	classifiers/mlpackClassifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitMlClassifier.cpp
-	classifiers/mlpackClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/majorityCombinator.cpp
 	combinators/sumCombinator.cpp
 	filesystem/fileModificationChecker.cpp
+	ml/lightGBMWrapper.cpp
 	ml/mlpackModels/decisionTreeModel.cpp
 	ml/mlpackModels/hoeffdingTreeModel.cpp
 	ml/mlpackModels/linearSVMModel.cpp
