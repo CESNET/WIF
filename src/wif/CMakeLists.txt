@@ -1,6 +1,7 @@
 set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
 	classifiers/ipPrefixClassifier.cpp
+	classifiers/lightGBMClassifier.cpp
 	classifiers/mlpackClassifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitMlClassifier.cpp
@@ -9,6 +10,7 @@ set(LIBWIF_SOURCES
 	combinators/majorityCombinator.cpp
 	combinators/sumCombinator.cpp
 	filesystem/fileModificationChecker.cpp
+	ml/lightGBMWrapper.cpp
 	ml/mlpackModels/decisionTreeModel.cpp
 	ml/mlpackModels/hoeffdingTreeModel.cpp
 	ml/mlpackModels/linearSVMModel.cpp
@@ -42,13 +44,6 @@ if(BUILD_WITH_UNIREC)
 	list(APPEND LIBWIF_LIBS
 		unirec::unirec
 		unirec::unirec++
-	)
-endif()
-
-if(BUILD_WITH_LIGHTGBM)
-	list(APPEND LIBWIF_SOURCES
-		classifiers/lightGBMClassifier.cpp
-		ml/lightGBMWrapper.cpp
 	)
 endif()
 

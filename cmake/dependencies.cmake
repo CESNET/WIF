@@ -1,6 +1,7 @@
 # Project dependencies
 find_package(Armadillo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex serialization)
+find_package(LIGHTGBM REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(Python3 REQUIRED COMPONENTS Development NumPy)
 
