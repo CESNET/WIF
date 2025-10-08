@@ -1,9 +1,9 @@
 set(LIBWIF_SOURCES
 	classifiers/classifier.cpp
 	classifiers/ipPrefixClassifier.cpp
+	classifiers/mlpackClassifier.cpp
 	classifiers/regexClassifier.cpp
 	classifiers/scikitMlClassifier.cpp
-	classifiers/mlpackClassifier.cpp
 	combinators/averageCombinator.cpp
 	combinators/binaryDSTCombinator.cpp
 	combinators/majorityCombinator.cpp
@@ -42,6 +42,13 @@ if(BUILD_WITH_UNIREC)
 	list(APPEND LIBWIF_LIBS
 		unirec::unirec
 		unirec::unirec++
+	)
+endif()
+
+if(BUILD_WITH_LIGHTGBM)
+	list(APPEND LIBWIF_SOURCES
+		classifiers/lightGBMClassifier.cpp
+		ml/lightGBMWrapper.cpp
 	)
 endif()
 
