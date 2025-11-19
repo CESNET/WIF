@@ -31,6 +31,7 @@ set(LIBWIF_LIBS
 	Boost::regex
 	Boost::serialization
 	dstlib::dst
+	LightGBM::lightgbm
 	OpenMP::OpenMP_CXX
 	Python3::Python
 	Python3::NumPy

@@ -16,8 +16,8 @@
 namespace WIF {
 
 /**
- * @brief Abstract class specifying interfaces for ML classifiers (ScikitMlClassifier and
- * MlpackClassifier)
+ * @brief Abstract class specifying interfaces for ML classifiers (ScikitMlClassifier,
+ * MlpackClassifier and LightGBMClassifier)
  *
  */
 class GenericMlClassifier : public Classifier {
@@ -32,7 +32,7 @@ public:
 	 * @brief Reload the model from file, which was set in the constructor
 	 *
 	 * @param logicalName contains the logical name of the trained model. The parameter is used only
-	 * with MlpackClassifier (it is unused with ScikitMlClassifier)
+	 * with MlpackClassifier (it is unused with ScikitMlClassifier and LightGBMClassifier)
 	 */
 	virtual void reloadModelFromDisk(const std::string& logicalName = "trained_data") = 0;
 };

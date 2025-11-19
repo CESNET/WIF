@@ -14,27 +14,40 @@ if(PKG_CONFIG_FOUND)
     pkg_check_modules(PC_LIGHTGBM QUIET lightgbm)
 endif()
 
+# Find headers
 find_path(
-    LIGHTGBM_INCLUDE_DIR lightgbm
+    LIGHTGBM_INCLUDE_DIR
     NAMES LightGBM/c_api.h
     HINTS ${PC_LIGHTGBM_INCLUDEDIR} ${PC_LIGHTGBM_INCLUDE_DIRS}
-    PATH_SUFFIXES include
+          /usr/local/include
+          /usr/include
 )
 
-if(PC_LIGHTGBM_VERSION)
-    # Version extracted from pkg-config
-    set(LIGHTGBM_VERSION_STRING ${PC_LIGHTGBM_VERSION})
-endif()
+# Find library
+find_library(
+    LIGHTGBM_LIBRARY
+    NAMES lightgbm lib_lightgbm _lightgbm
+    HINTS ${PC_LIGHTGBM_LIBDIR} ${PC_LIGHTGBM_LIBRARY_DIRS}
+          /usr/local/lib
+          /usr/lib
+)
 
-# Handle find_package() arguments (i.e. QUIETLY and REQUIRED) and set
-# LIGHTGBM_FOUND to TRUE if all listed variables are filled.
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
     LIGHTGBM
-    REQUIRED_VARS LIGHTGBM_INCLUDE_DIR
-    VERSION_VAR LIGHTGBM_VERSION_STRING
+    REQUIRED_VARS LIGHTGBM_INCLUDE_DIR LIGHTGBM_LIBRARY
 )
 
-set(LIGHTGBM_INCLUDE_DIRS ${LIGHTGBM_INCLUDE_DIR})
-mark_as_advanced(LIGHTGBM_INCLUDE_DIR)
+if(LIGHTGBM_FOUND)
+    set(LIGHTGBM_INCLUDE_DIRS ${LIGHTGBM_INCLUDE_DIR})
+    set(LIGHTGBM_LIBRARIES ${LIGHTGBM_LIBRARY})
+
+    add_library(LightGBM::lightgbm SHARED IMPORTED)
+    set_target_properties(LightGBM::lightgbm PROPERTIES
+        IMPORTED_LOCATION "${LIGHTGBM_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${LIGHTGBM_INCLUDE_DIRS}"
+    )
+endif()
+
+mark_as_advanced(LIGHTGBM_INCLUDE_DIR LIGHTGBM_LIBRARY)
 
