@@ -99,21 +99,18 @@ public:
 	 * @brief Train LightGBM model
 	 *
 	 * @param datasetFileName is the name of the file with training data
-	 * @param datasetParams are the additional parameters of the training dataset. Default:
-	 * eader=true label=name:label
+	 * @param datasetParams are the additional parameters of the training dataset
 	 * @param numOfIterations is the number of training iterations (how many
 	 * LGBM_BoosterUpdateOneIter function is called, see
-	 * https://lightgbm.readthedocs.io/en/stable/C-API.html). Default: 100
+	 * https://lightgbm.readthedocs.io/en/stable/C-API.html)
 	 * @param params are parameters in format ‘key1=value1 key2=value2’ (see
-	 * https://lightgbm.readthedocs.io/en/stable/C-API.html). Default: boosting_type=gbdt
-	 * objective=binary metric=auc num_leaves=30 learning_rate=0.05 feature_fraction=0.9
-	 * @param modelFileName name of the file where the trained model will be saved. Default:
-	 * model.txt
+	 * https://lightgbm.readthedocs.io/en/stable/C-API.html)
+	 * @param modelFileName name of the file where the trained model will be saved
 	 */
 	void train(
-		const std::string datasetFileName,
+		const std::string& datasetFileName,
 		const char* datasetParams = "header=true label=name:label",
-		const int numOfIterations = 100,
+		const unsigned numOfIterations = 100,
 		const char* params
 		= "boosting_type=gbdt objective=binary metric=auc num_leaves=30 learning_rate=0.05 "
 		  "feature_fraction=0.9",

@@ -42,7 +42,6 @@ bool LightGBMWrapper::loadModel(const std::string& modelPath)
 	if (!LGBM_BoosterCreateFromModelfile(modelPath.c_str(), &m_outNumIterations, &m_booster)) {
 		m_isLoaded = true;
 		m_modelPath = modelPath;
-
 		return true;
 	}
 
@@ -54,14 +53,11 @@ ClfResult LightGBMWrapper::classify(const FlowFeatures& flowFeatures)
 	std::vector<double> dataToClassify; // classified features from flowfeatures are extracted here
 	int64_t outLen; // length of output result
 	int numOfClasses; // number of classes
-
 	LGBM_BoosterGetNumClasses(m_booster, &numOfClasses);
 
 	std::vector<double> pred(numOfClasses); // vector with predictions
-
 	for (const auto& featureID : m_featureIDs) {
 		double value = flowFeatures.get<double>(featureID);
-
 		dataToClassify.push_back(value);
 	}
 
@@ -86,8 +82,7 @@ std::vector<ClfResult> LightGBMWrapper::classify(const std::vector<FlowFeatures>
 	std::vector<double> dataToClassify; // Classified features from flowfeatures are extracted here
 	int64_t outLen; // length of output result
 	int numOfClasses; // number of classes
-	std::vector<ClfResult>
-		burstResults; // vector with predictions in ClfResult format for return value
+	std::vector<ClfResult> burstResults; // vector with predictions in ClfResult format
 
 	burstResults.reserve(burstOfFeatures.size());
 	LGBM_BoosterGetNumClasses(m_booster, &numOfClasses);
@@ -97,7 +92,6 @@ std::vector<ClfResult> LightGBMWrapper::classify(const std::vector<FlowFeatures>
 	for (const auto& feature : burstOfFeatures) { // data preparation for classification
 		for (const auto& featureId : m_featureIDs) {
 			double value = feature.get<double>(featureId);
-
 			dataToClassify.push_back(value);
 		}
 	}
@@ -116,10 +110,10 @@ std::vector<ClfResult> LightGBMWrapper::classify(const std::vector<FlowFeatures>
 		&outLen,
 		pred.data());
 
-	for (size_t i = 0; i < burstOfFeatures.size(); ++i) { // converting pred to burstResults
+	for (unsigned idx = 0; idx < burstOfFeatures.size(); ++idx) { // converting pred to burstResults
 		std::vector<double> probabilities(
-			pred.begin() + i * numOfClasses,
-			pred.begin() + (i + 1) * numOfClasses);
+			pred.begin() + idx * numOfClasses,
+			pred.begin() + (idx + 1) * numOfClasses);
 		burstResults.emplace_back(probabilities);
 	}
 
@@ -132,9 +126,9 @@ bool LightGBMWrapper::isLoaded() const
 }
 
 void LightGBMWrapper::train(
-	const std::string datasetFileName,
+	const std::string& datasetFileName,
 	const char* datasetParams,
-	const int numOfIterations,
+	const unsigned numOfIterations,
 	const char* params,
 	const std::string modelFileName)
 {
@@ -152,7 +146,7 @@ void LightGBMWrapper::train(
 		throw std::runtime_error("Error creating booster");
 	}
 
-	for (int i = 0; i < numOfIterations; ++i) { // training
+	for (unsigned i = 0; i < numOfIterations; ++i) { // training
 		int isFinished;
 		LGBM_BoosterUpdateOneIter(m_booster, &isFinished);
 		if (isFinished) {
