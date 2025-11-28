@@ -1,6 +1,7 @@
 # Project dependencies
 find_package(Armadillo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS regex serialization)
+find_package(LIGHTGBM REQUIRED)
 find_package(MLPACK REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(Python3 REQUIRED COMPONENTS Development NumPy)
@@ -17,4 +18,3 @@ if(OpenMP_CXX_FOUND)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     add_compile_options(${OpenMP_CXX_FLAGS})
 endif()
-
