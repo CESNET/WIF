@@ -53,9 +53,7 @@ ClfResult LightGBMWrapper::classify(const FlowFeatures& flowFeatures)
 	std::vector<double> dataToClassify; // classified features from flowfeatures are extracted here
 	int64_t outLen; // length of output result
 	int numOfClasses; // number of classes
-
 	LGBM_BoosterGetNumClasses(m_booster, &numOfClasses);
-
 	std::vector<double> pred(numOfClasses); // vector with predictions
 
 	for (const auto& featureID : m_featureIDs) {
@@ -78,7 +76,6 @@ ClfResult LightGBMWrapper::classify(const FlowFeatures& flowFeatures)
 
 	if (numOfClasses == 1) {
 		double tmp = pred[0];
-
 		pred.insert(pred.begin(), (1.0 - tmp));
 	}
 
@@ -125,7 +122,6 @@ std::vector<ClfResult> LightGBMWrapper::classify(const std::vector<FlowFeatures>
 
 		if (numOfClasses == 1) {
 			double tmp = probabilities[0];
-
 			probabilities.insert(probabilities.begin(), (1.0 - tmp));
 		}
 
